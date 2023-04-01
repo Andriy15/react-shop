@@ -1,20 +1,41 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { ProductPages } from "./pages/ProductPages";
-import { AboutPage } from "./pages/AboutPage";
+import { BucketPage } from "./pages/BucketPage";
+import React, { useState } from "react";
+import { useProducts } from "./hooks/products-hooks";
 import { Navigation } from "./components/Navigation";
+import { SignInForm } from "./components/SignInForm";
+import { SignUpForm } from "./components/SignUpForm";
+
 
 function App() {
+  const { products } = useProducts();
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
-  // function toggleCurrency() {
-  //   setCurrency((prevCurrency) => (prevCurrency === "usd" ? "uah" : "usd"));
-  // }
+  const handleFormSubmit = () => {
+    setFormSubmitted(true);
+  };
+
+  const toggleSignUp = () => {
+    setIsSignUp((prevIsSignUp) => !prevIsSignUp);
+  };
+
+  if (!formSubmitted) {
+    if (isSignUp) {
+      return <SignUpForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />;
+    } else {
+      return <SignInForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />;
+    }
+  }
 
   return (
      <>
-       <Navigation  />
+       <Navigation products={products} />
        <Routes>
          <Route path="/" element={<ProductPages />} />
-         <Route path="/about" element={<AboutPage />} />
+         <Route path="/bucket" element={<BucketPage />} />
+         <Route path="*" element={<Navigate to="/" />} />
        </Routes>
      </>
   );
