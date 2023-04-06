@@ -2,6 +2,10 @@ import {useContext, useState} from "react";
 import {Link} from "react-router-dom";
 import {CurrencyContext} from "../context/CurrencyContext";
 import {IProduct} from "../models";
+import {getAuth} from "firebase/auth";
+import {app} from "../firebase";
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 interface Props {
   products: IProduct[]
@@ -10,6 +14,8 @@ interface Props {
 export function Navigation({ products }: Props) {
   const { currency, onToggleUsd, onToggleUah } = useContext(CurrencyContext)
   const [searchQuery, setSearchQuery] = useState("")
+  const auth = getAuth(app)
+  const [user] = useAuthState(auth)
 
   const filteredProducts = products.filter((product) =>
      product.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -79,6 +85,18 @@ export function Navigation({ products }: Props) {
                 </div>
              )}
            </div>
+           {user && (
+              <div className="flex items-center ml-4">
+                <span className="text-gray-700 mr-2">Email: {user.email}</span>
+                <button
+                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none"
+                 onClick={() => auth.signOut()}
+                 >
+                  Log Out
+                </button>
+              </div>
+            )}
+
          </div>
        </div>
      </nav>

@@ -1,24 +1,57 @@
 import { useForm } from 'react-hook-form';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "../firebase";
+import { useEffect, useState } from "react";
+import { User } from 'firebase/auth';
+import { FirebaseError } from '@firebase/util';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface SignInFormData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 interface SignInFormProps {
-  onSubmit: () => void;
-  onToggleSignUp: () => void;
+  onSubmit: () => void
+  onToggleSignUp: () => void
 }
-
-
 
 export function SignInForm(props: SignInFormProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>()
+  const auth = getAuth(app)
+  const [user, setUser] = useState<User | null>(null) // <-- update state type to User | null
 
-  const onSubmit = (data: SignInFormData) => {
-    //@ts-ignore
-    props.onSubmit(data)
-    console.log(data)
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged( user => {
+      if (user) {
+        setUser(user)
+      } else {
+        setUser(null)
+      }
+    })
+
+    return unsubscribe;
+  }, [auth])
+
+  const onSubmit = async (data: SignInFormData) => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, data.email, data.password)
+      const user = result.user
+      setUser(user)
+      props.onSubmit()
+    } catch (error: any) {
+      const firebaseError = error as FirebaseError
+      toast.error(firebaseError.code, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
   }
 
   return (
@@ -70,6 +103,9 @@ export function SignInForm(props: SignInFormProps) {
              Create Account
            </button>
          </div>
+       </div>
+       <div>
+         <ToastContainer />
        </div>
      </form>
   );

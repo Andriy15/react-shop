@@ -23,13 +23,12 @@ export function CreateProduct({onCreate}: CreateProductProps) {
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
 
-  const submitHandler = async (event: FormEvent) => {
+  const submitHandler = async (event: FormEvent): Promise<void> => {
     event.preventDefault()
     setError('')
 
     if (value.trim().length === 0) {
-      setError('Please enter valid title')
-      return
+      return setError('Please enter valid title')
     }
 
     productData.title = value

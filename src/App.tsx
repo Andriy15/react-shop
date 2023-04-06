@@ -31,14 +31,14 @@ function App() {
 
   return (
      <>
-       <Navigation products={products} />
-       <Routes>
-         <Route path="/" element={<ProductPages />} />
-         <Route path="/bucket" element={<BucketPage />} />
-         <Route path="*" element={<Navigate to="/" />} />
-       </Routes>
+        <Navigation products={products} />
+        <Routes>
+          <Route path="/" element={<ProductPages />} />
+          <Route path="/bucket" element={<BucketPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
      </>
-  );
+  )
 }
 
 export default App;

@@ -1,24 +1,31 @@
 import { useForm } from 'react-hook-form';
-import { getAuth, signInWithPopup } from 'firebase/auth'
-import {app, googleAuthProvider} from "../firebase";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import {app} from "../firebase";
 import {useEffect, useState} from "react";
+import { User } from 'firebase/auth';
+import { FirebaseError } from 'firebase/app';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface SignUpProps {
-  onSubmit: (formData: SignUnFormData) => void;
-  onToggleSignUp: () => void;
+  onSubmit: (formData: SignUnFormData) => void
+  onToggleSignUp: () => void
 }
 
 interface SignUnFormData {
-  email: string;
-  password: string;
+  email: string
+  password: string
   name: string
+}
+
+interface CustomUser extends User {
+  updateProfile: (profile: { displayName?: string | null; photoURL?: string | null; }) => Promise<void>
 }
 
 export function SignUpForm(props: SignUpProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<SignUnFormData>()
   const auth = getAuth(app)
   const [user, setUser] = useState(auth.currentUser)
-  
 
 
   useEffect(() => {
@@ -26,21 +33,35 @@ export function SignUpForm(props: SignUpProps) {
       if (user != null) {
         return setUser(user)
       }
-
-      signInWithPopup(auth, googleAuthProvider)
-      .then(credentials => setUser(credentials.user))
-      .catch(e => console.error(e))
     })
 
     return unsub
   }, [auth])
 
-  console.log(user)
+  const onSubmit = async (data: SignUnFormData) => {
+    try {
+      const { email, password, name } = data
 
-  const onSubmit = (data: SignUnFormData) => {
-    props.onSubmit(data)
-    console.log(data)
-  };
+      await createUserWithEmailAndPassword(auth, email, password)
+
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      const customUser = userCredential.user as CustomUser
+
+      await customUser.updateProfile({ displayName: name })
+      props.onSubmit(data)
+    } catch (error: any) {
+      const firebaseError = error as FirebaseError
+      toast.error(firebaseError.code, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
+  }
 
   return (
      <form onSubmit={handleSubmit(onSubmit)} className="bg-gray-100 rounded-lg shadow-md p-8 w-80 mx-auto">
@@ -75,6 +96,9 @@ export function SignUpForm(props: SignUpProps) {
          >
            Already have an account?
          </button>
+       </div>
+       <div>
+         <ToastContainer />
        </div>
      </form>
   )

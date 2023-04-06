@@ -7,6 +7,8 @@ import {BrowserRouter} from "react-router-dom";
 import {CurrencyState} from "./context/CurrencyContext";
 import {Provider} from "react-redux";
 import {store} from "./store";
+import {TotalPriceState} from "./context/TotalPriceContext";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,11 +17,13 @@ root.render(
    <Provider store={store}>
      <BrowserRouter>
        <>
+         <TotalPriceState>
          <CurrencyState>
          <ModalState>
            <App />
          </ModalState>
          </CurrencyState>
+         </TotalPriceState>
        </>
      </BrowserRouter>
    </Provider>

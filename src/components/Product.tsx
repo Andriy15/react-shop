@@ -3,6 +3,11 @@ import {useContext, useMemo, useState} from "react";
 import {CurrencyContext} from "../context/CurrencyContext";
 import {useActions} from "../hooks/use-actions";
 import {useAppSelector} from "../hooks/redux";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import {TotalPriceContext} from "../context/TotalPriceContext"
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ProductProps {
   product: IProduct
@@ -11,12 +16,14 @@ interface ProductProps {
 
 export function Product({ product }: ProductProps) {
   const [details, setDetails] = useState(false)
+  const [showPopup, setShowPopup] = useState(false);
 
   const {data} = useAppSelector(state => state.bucket)
 
   const [isBuy, setIsBuy] = useState(data.findIndex(p => p.id === product.id && p.title === product.title) !== -1)
 
   const { currency } = useContext(CurrencyContext)
+  const { addPrice } = useContext(TotalPriceContext)
 
   const {addToBucket, removeBucket} = useActions()
 
@@ -57,6 +64,16 @@ export function Product({ product }: ProductProps) {
     }
     addToBucket(data)
     setIsBuy(true)
+    addPrice(product.price)
+    toast.success('Product was added to Bucket!!!', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
   }
   const removeFromBucket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -68,7 +85,7 @@ export function Product({ product }: ProductProps) {
       category: product.category,
     };
     removeBucket(data);
-    setIsBuy(false);
+    setIsBuy(false)
   };
 
   return (
@@ -79,7 +96,7 @@ export function Product({ product }: ProductProps) {
          <span>
            <span>Price: {calculateValue(currency, product.price)}{currency === 'usd' ? ' $' : ' UAH'}</span>
          </span>
-      </span>
+       </span>
 
        <div className='flex'>
          <button
@@ -93,10 +110,51 @@ export function Product({ product }: ProductProps) {
          {!isBuy && <button
             className='ml-2 bg-green-500'
             style={{ ...buttonStyles}}
-            onClick={addBucket}
+            onClick={() => setShowPopup(true)}
          >
             Buy product
          </button>}
+
+         {showPopup && (
+            <Popup
+               open={showPopup}
+               closeOnDocumentClick
+               onClose={() => setShowPopup(false)}
+               className="w-3/4 mx-auto"
+            >
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/2">
+                  <img src={product.image} alt={product.title} />
+                </div>
+                <div className="md:w-1/2 p-4">
+                  <h2 className="text-2xl font-bold">{product.title}</h2>
+                  <p className="mt-2 mb-4">
+                    {product.description}
+                  </p>
+                  <div className="flex justify-between">
+                    <p className="font-bold">
+                      Price: {calculateValue(currency, product.price)}{currency === 'usd' ? ' $' : ' UAH'}
+                    </p>
+                    {!isBuy && <button
+                       className="bg-green-500 text-white px-4 py-2 rounded"
+                       onClick={addBucket}
+                    >
+                      Buy
+                    </button>}
+
+                    {isBuy && <button
+                       className="ml-2 bg-orange-500"
+                       style={{ ...buttonStyles}}
+                       onClick={removeFromBucket}
+                    >
+                      Remove product
+                    </button>}
+                  </div>
+                </div>
+              </div>
+            </Popup>
+         )}
+
 
          {isBuy && <button
             className="ml-2 bg-orange-500"
@@ -123,6 +181,7 @@ export function Product({ product }: ProductProps) {
             </p>
           </div>
        )}
+       <ToastContainer />
      </div>
   )
 }

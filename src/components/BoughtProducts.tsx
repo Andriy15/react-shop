@@ -1,25 +1,35 @@
 import { IProduct } from "../models";
 import {CurrencyContext} from "../context/CurrencyContext";
-import {useContext, useState} from "react";
+import {useContext, useMemo, useState} from "react";
 import {useActions} from "../hooks/use-actions";
+import {TotalPriceContext} from "../context/TotalPriceContext";
+
 
 interface BoughtItemProps {
   product: IProduct,
   currency: string
 }
 
-function calculateValue(currency: string, price: number) {
-  if (currency === "uah") {
-    return price * 40
-  } else return price
-}
-
 export function BoughtProducts({ product }: BoughtItemProps) {
   const {currency} = useContext(CurrencyContext)
+  const { removePrice } = useContext(TotalPriceContext)
 
   const [quantity, setQuantity] = useState(1)
 
   const {removeBucket} = useActions()
+
+
+  const calculateValue = useMemo(() => {
+    function calculate(currency: string, price: number) {
+      if (currency === "uah") {
+        return price * 40;
+      } else {
+        return price;
+      }
+    }
+    return calculate;
+  }, []);
+
 
   const removeFromBucket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -31,7 +41,8 @@ export function BoughtProducts({ product }: BoughtItemProps) {
       category: product.category,
     };
     removeBucket(data)
-  };
+    removePrice(product.price)
+  }
 
   return (
      <div className="bg-white p-4 rounded-md shadow-md">
