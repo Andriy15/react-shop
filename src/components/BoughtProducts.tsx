@@ -3,6 +3,7 @@ import {CurrencyContext} from "../context/CurrencyContext";
 import {useContext, useMemo, useState} from "react";
 import {useActions} from "../hooks/use-actions";
 import {TotalPriceContext} from "../context/TotalPriceContext";
+import {CountContext} from "../context/CountItemsInBucketContext";
 
 
 interface BoughtItemProps {
@@ -13,6 +14,7 @@ interface BoughtItemProps {
 export function BoughtProducts({ product }: BoughtItemProps) {
   const {currency} = useContext(CurrencyContext)
   const { removePrice } = useContext(TotalPriceContext)
+  const {removeCount} = useContext(CountContext)
 
   const [quantity, setQuantity] = useState(1)
 
@@ -42,6 +44,7 @@ export function BoughtProducts({ product }: BoughtItemProps) {
     };
     removeBucket(data)
     removePrice(product.price)
+    removeCount()
   }
 
   return (

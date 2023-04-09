@@ -1,7 +1,7 @@
 import { useAppSelector } from "../hooks/redux";
 import { Link } from "react-router-dom";
 import { BoughtProducts } from "../components/BoughtProducts";
-import { useContext } from "react";
+import {useContext} from "react";
 import { CurrencyContext } from "../context/CurrencyContext";
 import { IProduct } from "../models";
 import { TotalPriceContext } from "../context/TotalPriceContext";
@@ -11,9 +11,10 @@ interface ProductProps extends IProduct {
 }
 
 export function BucketPage() {
-  const data = useAppSelector((state) => state.bucket.data);
+  const data = useAppSelector((state) => state.bucket.data)
+
   const { currency } = useContext(CurrencyContext);
-  const { totalPrice } = useContext(TotalPriceContext);
+  const { totalPrice } = useContext(TotalPriceContext)
 
   if (data.length === 0)
     return (

@@ -7,11 +7,10 @@ import { Navigation } from "./components/Navigation";
 import { SignInForm } from "./components/SignInForm";
 import { SignUpForm } from "./components/SignUpForm";
 
-
 function App() {
-  const { products } = useProducts();
+  const { products} = useProducts();
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false)
 
   const handleFormSubmit = () => {
     setFormSubmitted(true);

@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import {ModalState} from "./context/ModalContext";
 import {BrowserRouter} from "react-router-dom";
 import {CurrencyState} from "./context/CurrencyContext";
 import {Provider} from "react-redux";
 import {store} from "./store";
 import {TotalPriceState} from "./context/TotalPriceContext";
+import {CountState} from "./context/CountItemsInBucketContext";
 
 
 const root = ReactDOM.createRoot(
@@ -19,9 +19,9 @@ root.render(
        <>
          <TotalPriceState>
          <CurrencyState>
-         <ModalState>
+         <CountState>
            <App />
-         </ModalState>
+         </CountState>
          </CurrencyState>
          </TotalPriceState>
        </>
