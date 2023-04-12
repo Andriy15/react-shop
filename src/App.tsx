@@ -19,6 +19,7 @@ function App() {
   const toggleSignUp = () => {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
   }
+ 
 
   if (!formSubmitted) {
     if (isSignUp) {
