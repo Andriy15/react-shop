@@ -3,15 +3,15 @@ import React, { useState } from "react";
 interface DetailsProductProps {
   showDetails: string;
   hideDetails: string;
-  onDetails: (details: boolean) => void; // Update the type of onDetails callback
+  onDetails: (details: boolean) => void
 }
 
 export function ButtonDetailsProduct(props: DetailsProductProps) {
-  const [details, setDetails] = useState(false); // Update the initial value of details state
+  const [details, setDetails] = useState(false)
 
-  const btnBgClassName = details ? "bg-yellow-400" : "bg-blue-400";
+  const btnBgClassName = details ? "bg-yellow-400" : "bg-blue-400"
 
-  const btnClasses = ["py-2 px-4 border", btnBgClassName].join(" ");
+  const btnClasses = ["py-2 px-4 border", btnBgClassName].join(" ")
 
   const buttonStyles = {
     padding: "10px 20px",
@@ -23,8 +23,8 @@ export function ButtonDetailsProduct(props: DetailsProductProps) {
   }
 
   const handleClick = () => {
-    setDetails(!details); // Toggle the value of details state
-    props.onDetails(!details); // Call the onDetails callback with the updated value of details state
+    setDetails(!details)
+    props.onDetails(!details)
   };
 
 
@@ -35,7 +35,10 @@ export function ButtonDetailsProduct(props: DetailsProductProps) {
           style={buttonStyles}
           onClick={handleClick}
        >
-         {details ? props.hideDetails : props.showDetails}
+         {details
+          ? props.hideDetails
+          : props.showDetails
+          }
        </button>
      </div>
   );

@@ -2,13 +2,12 @@ import { useForm } from 'react-hook-form';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import {app} from "../firebase";
 import {useEffect, useState} from "react";
-import { User } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface SignUpProps {
-  onSubmit: (formData: SignUnFormData) => void
+  onSubmit: () => void
   onToggleSignUp: () => void
 }
 
@@ -16,10 +15,6 @@ interface SignUnFormData {
   email: string
   password: string
   name: string
-}
-
-interface CustomUser extends User {
-  updateProfile: (profile: { displayName?: string | null; photoURL?: string | null; }) => Promise<void>
 }
 
 export function SignUpForm(props: SignUpProps) {
@@ -40,15 +35,10 @@ export function SignUpForm(props: SignUpProps) {
 
   const onSubmit = async (data: SignUnFormData) => {
     try {
-      const { email, password, name } = data
-
+      const { email, password } = data
       await createUserWithEmailAndPassword(auth, email, password)
-
-      const userCredential = await signInWithEmailAndPassword(auth, email, password)
-      const customUser = userCredential.user as CustomUser
-
-      await customUser.updateProfile({ displayName: name })
-      props.onSubmit(data)
+      
+      props.onSubmit()
     } catch (error: unknown) {
       const firebaseError = error as FirebaseError
       toast.error(firebaseError.code, {

@@ -19,14 +19,15 @@ function App() {
   const toggleSignUp = () => {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
   }
+
  
-  // if (!formSubmitted) {
-  //   if (isSignUp) {
-  //     return <SignUpForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />;
-  //   } else {
-  //     return <SignInForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />;
-  //   }
-  // }
+  if (!formSubmitted) {
+    if (isSignUp) {
+      return <SignUpForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />;
+    } else {
+      return <SignInForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />;
+    }
+  }
        
   return (
      <>

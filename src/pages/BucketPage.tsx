@@ -52,6 +52,7 @@ export function BucketPage() {
                product={{ ...product } as ProductProps}
                key={product.id}
                currency={currency}
+               quantityItem={quantity}
             />
          ))}
        </div>

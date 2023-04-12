@@ -13,7 +13,6 @@
 // 11. The component renders the correct total quantity when the currency is changed and the quantity is changed
 
 
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import { Provider } from 'react-redux';

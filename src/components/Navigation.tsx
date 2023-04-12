@@ -102,5 +102,3 @@ export function Navigation({ products }: Props) {
      </nav>
   );
 }
-
-

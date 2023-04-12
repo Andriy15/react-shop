@@ -9,9 +9,10 @@ import {CountContext} from "../context/CountItemsInBucketContext";
 interface BoughtItemProps {
   product: IProduct,
   currency: string,
+  quantityItem: number
 }
 
-export function BoughtProducts({ product }: BoughtItemProps) {
+export function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
   const {currency} = useContext(CurrencyContext)
   const { removePrice, addPrice } = useContext(TotalPriceContext)
   const {removeCount} = useContext(CountContext)
@@ -46,6 +47,21 @@ export function BoughtProducts({ product }: BoughtItemProps) {
     removeCount()
   }
 
+  //creacte a function for add and remove total price with quantity
+  //its incorrect i receive NaN fix that
+  const handleAdd = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    setQuantity(quantity + 1)
+    addPrice(product.price * quantity)
+  }
+
+  const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    setQuantity(quantity - 1)
+    removePrice(product.price / quantity)
+  }
+
+
 
   return (
      <div className="bg-white p-4 rounded-md shadow-md">
@@ -61,7 +77,7 @@ export function BoughtProducts({ product }: BoughtItemProps) {
          <div className="flex items-center justify-center w-full py-2 px-4">
            <button
               className="text-xl font-bold text-gray-700 bg-gray-300 rounded-full h-8 w-8 mr-2 hover:bg-gray-400"
-              onClick={() => setQuantity(quantity - 1)}
+              onClick={handleRemove}
               disabled={quantity <= 1}
            >
              -
@@ -69,7 +85,7 @@ export function BoughtProducts({ product }: BoughtItemProps) {
            <span className="text-2xl font-bold text-gray-700">{quantity}</span>
            <button
               className="text-xl font-bold text-gray-700 bg-gray-300 rounded-full h-8 w-8 ml-2 hover:bg-gray-400"
-              onClick={() => setQuantity(quantity + 1)}
+              onClick={handleAdd}
               disabled={quantity >= 10}
            >
              +

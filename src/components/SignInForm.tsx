@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
 import { useEffect, useState } from "react";
-import { User } from 'firebase/auth';
 import { FirebaseError } from '@firebase/util';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,7 +19,7 @@ interface SignInFormProps {
 export function SignInForm(props: SignInFormProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>()
   const auth = getAuth(app)
-  const [user, setUser] = useState<User | null>(null) // <-- update state type to User | null
+  const [user, setUser] = useState(auth.currentUser)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged( user => {
@@ -34,13 +33,15 @@ export function SignInForm(props: SignInFormProps) {
     return unsubscribe;
   }, [auth])
 
+  
+
   const onSubmit = async (data: SignInFormData) => {
     try {
       const result = await signInWithEmailAndPassword(auth, data.email, data.password)
       const user = result.user
       setUser(user)
       props.onSubmit()
-    } catch (error: any) {
+    } catch (error: unknown) {
       const firebaseError = error as FirebaseError
       toast.error(firebaseError.code, {
         position: "top-right",
