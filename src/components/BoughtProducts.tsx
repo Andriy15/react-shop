@@ -8,12 +8,12 @@ import {CountContext} from "../context/CountItemsInBucketContext";
 
 interface BoughtItemProps {
   product: IProduct,
-  currency: string
+  currency: string,
 }
 
 export function BoughtProducts({ product }: BoughtItemProps) {
   const {currency} = useContext(CurrencyContext)
-  const { removePrice } = useContext(TotalPriceContext)
+  const { removePrice, addPrice } = useContext(TotalPriceContext)
   const {removeCount} = useContext(CountContext)
 
   const [quantity, setQuantity] = useState(1)
@@ -25,7 +25,7 @@ export function BoughtProducts({ product }: BoughtItemProps) {
       if (currency === "usd") {
         return product.price * quantity
       } else {
-        return product.price * quantity * 27
+        return product.price * quantity * 40
       }
     }
     return calculate

@@ -1,7 +1,7 @@
 import { useAppSelector } from "../hooks/redux";
 import { Link } from "react-router-dom";
 import { BoughtProducts } from "../components/BoughtProducts";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import { CurrencyContext } from "../context/CurrencyContext";
 import { IProduct } from "../models";
 import { TotalPriceContext } from "../context/TotalPriceContext";
@@ -13,8 +13,20 @@ interface ProductProps extends IProduct {
 export function BucketPage() {
   const data = useAppSelector((state) => state.bucket.data)
 
+  const [quantity] = useState(1) 
+
   const { currency } = useContext(CurrencyContext);
   const { totalPrice } = useContext(TotalPriceContext)
+
+
+  const calculateValue = (currency: string, price: number, quantity: number) => {
+    if (currency === "usd") {
+      return price * quantity;
+    } else {
+      return price * quantity * 40;
+    }
+  }
+
 
   if (data.length === 0)
     return (
@@ -45,7 +57,7 @@ export function BucketPage() {
        </div>
        <div className="flex justify-end mt-6">
          <p className="text-xl font-bold mr-2">
-           Total: {totalPrice.toFixed(2)} {currency === "usd" ? "$" : "UAH"}
+           Total: {calculateValue(currency, totalPrice, quantity)}{currency === 'usd' ? ' $' : ' UAH'}
          </p>
            <a
               href='https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=andriychikulay%40gmail%2ecom&lc=US&item_name=Product&amount=1%2e00&currency_code=USD&button_subtype=services&no_note=0&tax_rate=1%2e000&shipping=0%2e01&bn=PP%2dBuyNowBF%3abtn_buynowCC_LG%2egif%3aNonHostedGuest'

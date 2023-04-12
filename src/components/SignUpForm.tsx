@@ -49,7 +49,7 @@ export function SignUpForm(props: SignUpProps) {
 
       await customUser.updateProfile({ displayName: name })
       props.onSubmit(data)
-    } catch (error: any) {
+    } catch (error: unknown) {
       const firebaseError = error as FirebaseError
       toast.error(firebaseError.code, {
         position: "top-right",
@@ -62,6 +62,7 @@ export function SignUpForm(props: SignUpProps) {
       })
     }
   }
+
 
   return (
      <form onSubmit={handleSubmit(onSubmit)} className="bg-gray-100 rounded-lg shadow-md p-8 w-80 mx-auto">

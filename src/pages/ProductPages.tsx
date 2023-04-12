@@ -29,12 +29,12 @@ export function ProductPages() {
           })}
        {products.map(product => <Product product={product} currency={currency} key={product.id} />)}
 
-       <ToastContainer />
-
        <motion.div
           className="fixed top-0 left-0 right-0 h-1 bg-green-500 transform origin-left"
           style={{ scaleX: scrollYProgress }}
        />
+
+        <ToastContainer />
 
      </div>
   )
