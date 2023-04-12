@@ -14,7 +14,7 @@ function App() {
 
   const handleFormSubmit = () => {
     setFormSubmitted(true)
-  };
+  }
 
   const toggleSignUp = () => {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
