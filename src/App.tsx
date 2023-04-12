@@ -18,7 +18,7 @@ function App() {
 
   const toggleSignUp = () => {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
-  };
+  }
 
   if (!formSubmitted) {
     if (isSignUp) {
@@ -27,11 +27,12 @@ function App() {
       return <SignInForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />;
     }
   }
-
+       
   return (
      <>
         <Navigation products={products} />
         <Routes>
+          <Route path="/" element={<ProductPages />} />
           <Route path="/" element={<ProductPages />} />
           <Route path="/bucket" element={<BucketPage />} />
           <Route path="*" element={<Navigate to="/" />} />
@@ -41,3 +42,6 @@ function App() {
 }
 
 export default App;
+
+
+

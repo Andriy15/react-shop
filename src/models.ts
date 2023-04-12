@@ -1,5 +1,5 @@
 export interface IProduct {
-  id?: number | any,
+  id?: number,
   title: string,
   price: number,
   description: string,

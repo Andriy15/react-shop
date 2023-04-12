@@ -20,21 +20,20 @@ export function BoughtProducts({ product }: BoughtItemProps) {
 
   const {removeBucket} = useActions()
 
-
   const calculateValue = useMemo(() => {
-    function calculate(currency: string, price: number) {
-      if (currency === "uah") {
-        return price * 40;
+    function calculate(currency: string, price: number, quantity: number) {
+      if (currency === "usd") {
+        return product.price * quantity
       } else {
-        return price;
+        return product.price * quantity * 27
       }
     }
-    return calculate;
-  }, []);
+    return calculate
+  }, [currency, product.price, quantity])
 
 
   const removeFromBucket = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     const data = {
       id: product.id,
       title: product.title,
@@ -47,6 +46,7 @@ export function BoughtProducts({ product }: BoughtItemProps) {
     removeCount()
   }
 
+
   return (
      <div className="bg-white p-4 rounded-md shadow-md">
        <div className="flex items-center">
@@ -54,7 +54,7 @@ export function BoughtProducts({ product }: BoughtItemProps) {
          <div className="flex flex-col ml-4">
            <h2 className="text-lg font-medium text-gray-900">{product.title}</h2>
            <p className="text-sm font-medium text-gray-500">Category: {product.category}</p>
-           <p className="text-lg font-medium text-gray-900">Price: {calculateValue(currency, product.price)}{currency === 'usd' ? ' $' : ' UAH'}</p>
+           <p className="text-lg font-medium text-gray-900">Price: {calculateValue(currency, product.price, quantity)}{currency === 'usd' ? ' $' : ' UAH'}</p>
          </div>
        </div>
        <div className="flex justify-between items-center mt-4">

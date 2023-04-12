@@ -19,14 +19,13 @@ export function ButtonsProduct({ product, removeButton, buyButton }: ProductProp
   const {data} = useAppSelector(state => state.bucket)
 
   const [isBuy, setIsBuy] = useState(data.findIndex(p => p.id === product.id && p.title === product.title) !== -1)
-
+  
   const { addPrice, removePrice } = useContext(TotalPriceContext)
   const {addCount, removeCount} = useContext(CountContext)
 
   const {addToBucket, removeBucket} = useActions()
 
-  const [showPopup, setShowPopup] = useState(false);
-
+  const [showPopup, setShowPopup] = useState(false)
 
   const buttonStyles = {
     padding: "10px 20px",
@@ -69,7 +68,7 @@ export function ButtonsProduct({ product, removeButton, buyButton }: ProductProp
       price: product.price.toString(),
       category: product.category,
     };
-    removeBucket(data);
+    removeBucket(data)
     setIsBuy(false)
     removePrice(product.price)
     removeCount()

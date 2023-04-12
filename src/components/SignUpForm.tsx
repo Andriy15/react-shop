@@ -30,7 +30,7 @@ export function SignUpForm(props: SignUpProps) {
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged(user => {
-      if (user != null) {
+      if (user !== null) {
         return setUser(user)
       }
     })

@@ -1,6 +1,5 @@
 import {useProducts} from "../hooks/products-hooks";
 import {useContext} from "react";
-
 import {Loader} from "../components/Loader";
 import {Error} from "../components/Error";
 import {Product} from "../components/Product";
