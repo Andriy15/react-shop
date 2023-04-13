@@ -11,10 +11,11 @@ interface ProductProps {
   currency: string
 }
 
-export function Product({ product }: ProductProps) {
+function Product({ product }: ProductProps) {
   const { currency } = useContext(CurrencyContext)
 
-  const [details, setDetails] = useState(false);
+  const [details, setDetails] = useState(false)
+
 
   const calculateValue = useMemo(() => {
     function calculate(currency: string, price: number) {
@@ -25,7 +26,7 @@ export function Product({ product }: ProductProps) {
       }
     }
     return calculate;
-  }, []);
+  }, [product.price])
 
   const toggleDetails = (details: boolean): void => {
     setDetails(details)
@@ -68,3 +69,5 @@ export function Product({ product }: ProductProps) {
      </div>
   )
 }
+
+export default React.memo(Product)

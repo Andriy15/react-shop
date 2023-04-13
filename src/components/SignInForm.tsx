@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
-import { useEffect, useState } from "react";
 import { FirebaseError } from '@firebase/util';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useCookies } from 'react-cookie';
 
 interface SignInFormData {
   email: string
@@ -19,27 +19,14 @@ interface SignInFormProps {
 export function SignInForm(props: SignInFormProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>()
   const auth = getAuth(app)
-  const [user, setUser] = useState(auth.currentUser)
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged( user => {
-      if (user) {
-        setUser(user)
-      } else {
-        setUser(null)
-      }
-    })
-
-    return unsubscribe;
-  }, [auth])
-
+  const [cookie, setCookie] = useCookies(['user'])
   
 
   const onSubmit = async (data: SignInFormData) => {
     try {
       const result = await signInWithEmailAndPassword(auth, data.email, data.password)
       const user = result.user
-      setUser(user)
+      setCookie('user', {user} , { path: '/'})
       props.onSubmit()
     } catch (error: unknown) {
       const firebaseError = error as FirebaseError
@@ -56,7 +43,7 @@ export function SignInForm(props: SignInFormProps) {
   }
 
   return (
-     <form
+    <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-gray-100 rounded-lg shadow-md p-8 w-80 mx-auto"
      >
@@ -109,5 +96,5 @@ export function SignInForm(props: SignInFormProps) {
          <ToastContainer />
        </div>
      </form>
-  );
+  )
 }

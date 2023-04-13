@@ -14,7 +14,7 @@ interface BoughtItemProps {
 
 export function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
   const {currency} = useContext(CurrencyContext)
-  const { removePrice, addPrice } = useContext(TotalPriceContext)
+  const { removePrice, addPrice, totalPrice } = useContext(TotalPriceContext)
   const {removeCount} = useContext(CountContext)
 
   const [quantity, setQuantity] = useState(1)
@@ -52,13 +52,13 @@ export function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
   const handleAdd = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     setQuantity(quantity + 1)
-    addPrice(product.price * quantity)
+    addPrice(product.price * quantity )
   }
 
   const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     setQuantity(quantity - 1)
-    removePrice(product.price / quantity)
+    removePrice(totalPrice - product.price * quantity)
   }
 
 

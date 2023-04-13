@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import {app} from "../firebase";
-import {useEffect, useState} from "react";
 import { FirebaseError } from 'firebase/app';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useCookies } from 'react-cookie';
 
 interface SignUpProps {
   onSubmit: () => void
@@ -20,24 +20,14 @@ interface SignUnFormData {
 export function SignUpForm(props: SignUpProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<SignUnFormData>()
   const auth = getAuth(app)
-  const [user, setUser] = useState(auth.currentUser)
+  const [cookie ,setCookie] = useCookies(['user'])
 
-
-  useEffect(() => {
-    const unsub = auth.onAuthStateChanged(user => {
-      if (user !== null) {
-        return setUser(user)
-      }
-    })
-
-    return unsub
-  }, [auth])
 
   const onSubmit = async (data: SignUnFormData) => {
     try {
-      const { email, password } = data
-      await createUserWithEmailAndPassword(auth, email, password)
-      
+      const res = await createUserWithEmailAndPassword(auth, data.email, data.password)
+      const user = res.user
+      setCookie('user', {user} , { path: '/'})
       props.onSubmit()
     } catch (error: unknown) {
       const firebaseError = error as FirebaseError

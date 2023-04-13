@@ -10,7 +10,6 @@ const initialState: BucketState = {
   data: JSON.parse(localStorage.getItem(LS_REACT_KEY) ?? '[]')
 }
 
-
 export const bucketSlice = createSlice({
   name: 'bucket',
   initialState,

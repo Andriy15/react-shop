@@ -67,7 +67,7 @@ export function ButtonsProduct({ product, removeButton, buyButton }: ProductProp
       image: product.image,
       price: product.price.toString(),
       category: product.category,
-    };
+    }
     removeBucket(data)
     setIsBuy(false)
     removePrice(product.price)
