@@ -1,5 +1,3 @@
-//write a more complex test for this component in App.test.tsx that tests the following: 
-// 
 // 1. The component renders without crashing
 // 2. The component renders the correct number of products
 // 3. The component renders the correct total price

@@ -1,6 +1,6 @@
 import { useAppSelector } from "../hooks/redux";
 import { Link } from "react-router-dom";
-import { BoughtProducts } from "../components/BoughtProducts";
+import BoughtProducts from "../components/BoughtProducts";
 import {useContext, useState} from "react";
 import { CurrencyContext } from "../context/CurrencyContext";
 import { IProduct } from "../models";

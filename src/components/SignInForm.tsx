@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
 import { FirebaseError } from '@firebase/util';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCookies } from 'react-cookie';
+
 
 interface SignInFormData {
   email: string
@@ -26,7 +27,7 @@ export function SignInForm(props: SignInFormProps) {
     try {
       const result = await signInWithEmailAndPassword(auth, data.email, data.password)
       const user = result.user
-      setCookie('user', {user} , { path: '/'})
+      setCookie('user', user, { path: '/' })
       props.onSubmit()
     } catch (error: unknown) {
       const firebaseError = error as FirebaseError

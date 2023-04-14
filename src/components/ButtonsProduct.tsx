@@ -72,6 +72,15 @@ export function ButtonsProduct({ product, removeButton, buyButton }: ProductProp
     setIsBuy(false)
     removePrice(product.price)
     removeCount()
+    toast.error('Product was removed from Bucket!!!', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
   }
 
   return (

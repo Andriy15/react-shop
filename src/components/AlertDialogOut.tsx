@@ -16,7 +16,7 @@ export function AlertDialogOut() {
       auth.signOut();
       removeCookie('user', {email, password}, { path: '/' })
       window.location.reload();
-    };
+    }
     
 
     return (

@@ -1,9 +1,11 @@
 import { IProduct } from "../models";
 import {CurrencyContext} from "../context/CurrencyContext";
-import {useContext, useMemo, useState} from "react";
+import React, {useContext, useMemo, useState} from "react";
 import {useActions} from "../hooks/use-actions";
 import {TotalPriceContext} from "../context/TotalPriceContext";
 import {CountContext} from "../context/CountItemsInBucketContext";
+import invariant from "tiny-invariant";
+import { toast } from "react-toastify";
 
 
 interface BoughtItemProps {
@@ -12,7 +14,7 @@ interface BoughtItemProps {
   quantityItem: number
 }
 
-export function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
+function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
   const {currency} = useContext(CurrencyContext)
   const { removePrice, addPrice, totalPrice } = useContext(TotalPriceContext)
   const {removeCount} = useContext(CountContext)
@@ -41,26 +43,25 @@ export function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
       image: product.image,
       price: product.price.toString(),
       category: product.category,
-    };
+    }
     removeBucket(data)
     removePrice(product.price)
     removeCount()
   }
 
-  //creacte a function for add and remove total price with quantity
-  //its incorrect i receive NaN fix that
   const handleAdd = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    invariant(quantity < 10, 'Quantity must be less than 10')
     setQuantity(quantity + 1)
     addPrice(product.price * quantity )
   }
 
   const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    invariant(quantity > 1, 'Quantity must be more than 1')
     setQuantity(quantity - 1)
     removePrice(totalPrice - product.price * quantity)
   }
-
 
 
   return (
@@ -78,7 +79,6 @@ export function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
            <button
               className="text-xl font-bold text-gray-700 bg-gray-300 rounded-full h-8 w-8 mr-2 hover:bg-gray-400"
               onClick={handleRemove}
-              disabled={quantity <= 1}
            >
              -
            </button>
@@ -86,7 +86,6 @@ export function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
            <button
               className="text-xl font-bold text-gray-700 bg-gray-300 rounded-full h-8 w-8 ml-2 hover:bg-gray-400"
               onClick={handleAdd}
-              disabled={quantity >= 10}
            >
              +
            </button>
@@ -102,3 +101,5 @@ export function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
      </div>
   );
 }
+
+export default React.memo(BoughtProducts)
