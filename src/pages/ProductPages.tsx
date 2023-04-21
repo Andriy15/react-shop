@@ -8,6 +8,7 @@ import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion, useScroll } from "framer-motion"
 import React from "react";
+import { HoverCardDemo } from "../components/HoverCardDemo";
 
 function ProductPages() {
   const {currency} = useContext(CurrencyContext)
@@ -17,6 +18,7 @@ function ProductPages() {
   const {loading, error, products} = useProducts()
 
   return (
+   <>
      <div className='container mx-auto max-w-2xl pt-5'>
        {loading && <Loader />}
        {error && toast.error(<Error error={error} />, {
@@ -38,6 +40,17 @@ function ProductPages() {
         <ToastContainer />
 
      </div>
+
+
+     <footer className='container mx-auto max-w-2xl pt-5 mb-5'>
+         <div className='flex justify-center'>
+            <p className='text-gray-500 text-sm'>© 2021 All rights reserved.</p>
+         </div>
+         <div className='flex justify-center'>
+            <p className='text-gray-500 text-sm'>Made with ❤️ by <HoverCardDemo /></p>
+         </div>
+      </footer>
+   </>
   )
 }
 

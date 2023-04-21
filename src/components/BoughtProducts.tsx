@@ -5,7 +5,6 @@ import {useActions} from "../hooks/use-actions";
 import {TotalPriceContext} from "../context/TotalPriceContext";
 import {CountContext} from "../context/CountItemsInBucketContext";
 import invariant from "tiny-invariant";
-import { toast } from "react-toastify";
 
 
 interface BoughtItemProps {
@@ -27,9 +26,9 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
     function calculate(currency: string, price: number, quantity: number) {
       if (currency === "usd") {
         return product.price * quantity
-      } else {
-        return product.price * quantity * 40
       }
+
+      return product.price * quantity * 40
     }
     return calculate
   }, [currency, product.price, quantity])
@@ -49,6 +48,9 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
     removeCount()
   }
 
+  //quantity adding incorectly 
+  //dont change product.price * quantity 
+  //fix total price adding with quantity
   const handleAdd = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     invariant(quantity < 10, 'Quantity must be less than 10')
@@ -56,6 +58,7 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
     addPrice(product.price * quantity )
   }
 
+  //quantity removing incorectly
   const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     invariant(quantity > 1, 'Quantity must be more than 1')

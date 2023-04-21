@@ -1,5 +1,4 @@
 import {useContext, useState} from "react";
-import {Link} from "react-router-dom";
 import {CurrencyContext} from "../context/CurrencyContext";
 import {IProduct} from "../models";
 import {getAuth} from "firebase/auth";
@@ -8,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import {Badge} from "@mui/material";
 import {CountContext} from "../context/CountItemsInBucketContext";
 import { AlertDialogOut } from "./AlertDialogOut";
+import { NavLink } from "react-router-dom";
 
 
 interface Props {
@@ -36,22 +36,22 @@ export function Navigation({ products }: Props) {
   return (
      <nav className="bg-white shadow-sm py-3">
        <div className="container mx-auto flex justify-between items-center px-4">
-         <Link className="text-lg font-bold text-gray-900" to="/">
+         <NavLink className="text-lg font-bold text-gray-900" to="/">
            React Shop
-         </Link>
+         </NavLink>
          <div className="flex items-center">
-           <Link
+           <NavLink
               className="mx-4 text-gray-600 hover:text-gray-900"
               to="/"
            >
              Products
-           </Link>
-           <Link
+           </NavLink>
+           <NavLink
               className="mx-4 text-gray-600 hover:text-gray-900"
               to="/bucket"
            >
              <Badge badgeContent={count} color="primary">Bucket</Badge>
-           </Link>
+           </NavLink>
 
            <div className="flex items-center border border-gray-300 rounded-lg p-2">
              <button

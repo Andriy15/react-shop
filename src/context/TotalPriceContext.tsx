@@ -17,7 +17,7 @@ export const TotalPriceState = ({ children }: { children: React.ReactNode }) => 
 
   const addPrice = (price: number) => {
     setTotalPrice((prevTotalPrice) => prevTotalPrice + price)
-  };
+  }
 
   const removePrice = (price: number) => {
     setTotalPrice((prevTotalPrice) => prevTotalPrice - price)

@@ -4,46 +4,34 @@ import { BucketPage } from "./pages/BucketPage";
 import React, { useState } from "react";
 import { useProducts } from "./hooks/products-hooks";
 import { Navigation } from "./components/Navigation";
-import { SignInForm } from "./components/SignInForm";
-import { SignUpForm } from "./components/SignUpForm";
-import { useCookies } from "react-cookie";
+import { AdminLayout } from "./routing/AdminLayout";
+import { readItemFromStorage } from "./helpers/handleStorage";
 
 
 function App() {
   const { products} = useProducts()
   const [formSubmitted, setFormSubmitted] = useState(false)
-  const [isSignUp, setIsSignUp] = useState(false)
-  const [cookie] = useCookies(['user'])
 
   const handleFormSubmit = () => {
     setFormSubmitted(true)
   }
 
-  const toggleSignUp = () => {
-    setIsSignUp( prevIsSignUp => !prevIsSignUp)
+
+  if (!formSubmitted && !readItemFromStorage("user")) {
+    return <AdminLayout submit={handleFormSubmit} />
   }
 
-if (!cookie.user) {
-  if (!formSubmitted) {
-    if (isSignUp) {
-      return <SignUpForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />
-    } else {
-      return <SignInForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />
-    }
-  }
-  }
-
-
+  // add to routes sign in and sign up pages and add component which will be rendered if user is not logged in 
   return (
      <>
-        <Navigation products={products} />
-        <Routes>
+       <Navigation products={products} />
+       <Routes>
           <Route path="/" element={<ProductPages />} />
           <Route path="/bucket" element={<BucketPage />} />
           <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+       </Routes>
      </>
   )
 }
 
-export default App
+export default React.memo(App)

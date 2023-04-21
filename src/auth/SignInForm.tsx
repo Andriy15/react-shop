@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { getAuth, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
 import { FirebaseError } from '@firebase/util';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useCookies } from 'react-cookie';
+import { writeItemToStorage } from '../helpers/handleStorage';
 
 
 interface SignInFormData {
@@ -20,16 +20,16 @@ interface SignInFormProps {
 export function SignInForm(props: SignInFormProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>()
   const auth = getAuth(app)
-  const [cookie, setCookie] = useCookies(['user'])
   
 
   const onSubmit = async (data: SignInFormData) => {
     try {
       const result = await signInWithEmailAndPassword(auth, data.email, data.password)
       const user = result.user
-      setCookie('user', user, { path: '/' })
+      writeItemToStorage('user', user.email)
       props.onSubmit()
-    } catch (error: unknown) {
+    } 
+    catch (error: unknown) {
       const firebaseError = error as FirebaseError
       toast.error(firebaseError.code, {
         position: "top-right",

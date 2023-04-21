@@ -2,20 +2,18 @@ import { getAuth } from "firebase/auth";
 import { app } from "../firebase";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCookies } from 'react-cookie';
 
 
 export function AlertDialogOut() {
     const auth = getAuth(app)
     const [user] = useAuthState(auth)
 
-    const [cookie, removeCookie] = useCookies(['user'])
 
-    const handleLogout = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      const { email, password } = event.currentTarget.dataset;
-      auth.signOut();
-      removeCookie('user', {email, password}, { path: '/' })
-      window.location.reload();
+
+    const handleLogout = () => {
+      auth.signOut()
+      localStorage.removeItem("user")
+      window.location.reload()
     }
     
 

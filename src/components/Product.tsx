@@ -32,7 +32,7 @@ function Product({ product }: ProductProps) {
     setDetails(details)
   }
 
-
+// switch calculating value to another component
   return (
      <div className="border py-2 px-4 rounded flex flex-col items-center mb-2">
        <img src={product.image} className="w-1/6" alt={product.title} />

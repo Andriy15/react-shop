@@ -45,6 +45,7 @@ export function BucketPage() {
        </div>
     )
 
+  //totalPrice adding incorectly with quantity 
   return (
      <div className="container mx-auto my-10">
        <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
