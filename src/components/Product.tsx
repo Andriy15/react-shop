@@ -5,6 +5,7 @@ import 'reactjs-popup/dist/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import {ButtonsProduct} from "./ButtonsProduct";
 import {ButtonDetailsProduct} from "./ButtonDetailsProduct";
+import {calculateValue} from "../utils/calculateValue";
 
 interface ProductProps {
   product: IProduct
@@ -17,16 +18,6 @@ function Product({ product }: ProductProps) {
   const [details, setDetails] = useState(false)
 
 
-  const calculateValue = useMemo(() => {
-    function calculate(currency: string, price: number) {
-      if (currency === "uah") {
-        return price * 40;
-      } else {
-        return price;
-      }
-    }
-    return calculate;
-  }, [product.price])
 
   const toggleDetails = (details: boolean): void => {
     setDetails(details)

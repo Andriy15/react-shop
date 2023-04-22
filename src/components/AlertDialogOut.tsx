@@ -2,6 +2,7 @@ import { getAuth } from "firebase/auth";
 import { app } from "../firebase";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { removeItemFromStorage } from "../utils/handleStorage";
 
 
 export function AlertDialogOut() {
@@ -12,7 +13,7 @@ export function AlertDialogOut() {
 
     const handleLogout = () => {
       auth.signOut()
-      localStorage.removeItem("user")
+      removeItemFromStorage("user")
       window.location.reload()
     }
     

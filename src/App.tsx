@@ -5,19 +5,21 @@ import React, { useState } from "react";
 import { useProducts } from "./hooks/products-hooks";
 import { Navigation } from "./components/Navigation";
 import { AdminLayout } from "./routing/AdminLayout";
-import { readItemFromStorage } from "./helpers/handleStorage";
+import { readItemFromStorage } from "./utils/handleStorage";
 
 
 function App() {
   const { products} = useProducts()
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const user = readItemFromStorage("user")
+
 
   const handleFormSubmit = () => {
     setFormSubmitted(true)
   }
 
 
-  if (!formSubmitted && !readItemFromStorage("user")) {
+  if (!formSubmitted && !readItemFromStorage("user") === user) {
     return <AdminLayout submit={handleFormSubmit} />
   }
 

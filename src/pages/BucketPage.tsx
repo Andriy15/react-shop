@@ -5,6 +5,7 @@ import {useContext, useState} from "react";
 import { CurrencyContext } from "../context/CurrencyContext";
 import { IProduct } from "../models";
 import { TotalPriceContext } from "../context/TotalPriceContext";
+import { calculateValue } from "../utils/calculateValue";
 
 interface ProductProps extends IProduct {
   currency: string;
@@ -19,15 +20,6 @@ export function BucketPage() {
 
   const { currency } = useContext(CurrencyContext);
   const { totalPrice } = useContext(TotalPriceContext)
-
-
-  const calculateValue = (currency: string, price: number) => {
-    if (currency === 'usd') {
-      return price 
-    } else {
-      return price * 40
-    }
-  }
 
 
   if (data.length === 0)

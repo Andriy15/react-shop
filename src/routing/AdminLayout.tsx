@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
 import { SignInForm } from '../auth/SignInForm'
 import { SignUpForm } from '../auth/SignUpForm'
+import { Loader } from '../components/Loader'
+import { useProducts } from '../hooks/products-hooks'
 
 interface AdminLayoutProps {
   submit: () => void
@@ -11,6 +12,7 @@ interface AdminLayoutProps {
 export function AdminLayout(props: AdminLayoutProps) {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [isSignUp, setIsSignUp] = useState(false)
+  const { loading } = useProducts()
 
   const handleFormSubmit = () => {
     setFormSubmitted(true)
@@ -20,6 +22,11 @@ export function AdminLayout(props: AdminLayoutProps) {
   const toggleSignUp = () => {
     setIsSignUp( prevIsSignUp => !prevIsSignUp)
   }
+
+  if (loading) {
+    return <Loader/>
+  }
+
 
   if (!formSubmitted) {
     return (
@@ -39,5 +46,6 @@ export function AdminLayout(props: AdminLayoutProps) {
   //check in github any other way to check if user is logged in
   //add component Routes to App.tsx instead this structure
   return (
-    <></>)
+    <></> 
+  )
 }
