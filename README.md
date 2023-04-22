@@ -5,7 +5,7 @@ Installation
 To install React Shop, you can either clone the repository from GitHub or install it using npm:
 
 
-`git clone https://github.com/your-username/react-shop.git`
+`git clone https://github.com/Andriy15/react-shop.git`
 
 `cd react-shop`
 
