@@ -1,5 +1,5 @@
 import { IProduct } from "../models";
-import React, {useContext, useMemo, useState} from "react";
+import React, {useContext, useState} from "react";
 import {CurrencyContext} from "../context/CurrencyContext";
 import 'reactjs-popup/dist/index.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,7 +23,7 @@ function Product({ product }: ProductProps) {
     setDetails(details)
   }
 
-// switch calculating value to another component
+
   return (
      <div className="border py-2 px-4 rounded flex flex-col items-center mb-2">
        <img src={product.image} className="w-1/6" alt={product.title} />

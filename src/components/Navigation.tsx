@@ -14,9 +14,12 @@ interface Props {
   products: IProduct[]
 }
 
+// change this component in terms of improving the style of the component
+
 export function Navigation({ products }: Props) {
   const { currency, onToggleUsd, onToggleUah } = useContext(CurrencyContext)
   const {count} = useContext(CountContext)
+
 
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -29,14 +32,14 @@ export function Navigation({ products }: Props) {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
-    setSearchQuery(event.target.value);
+    setSearchQuery(event.target.value)
   }
 
 
   return (
      <nav className="bg-white shadow-sm py-3">
        <div className="container mx-auto flex justify-between items-center px-4">
-         <NavLink className="text-lg font-bold text-gray-900" to="/">
+         <NavLink className="text-2xl font-bold text-gray-900" to="/">
            React Shop
          </NavLink>
          <div className="flex items-center">

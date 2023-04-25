@@ -25,10 +25,9 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
   const calculateValue = useMemo(() => {
     function calculate(currency: string, price: number, quantity: number) {
       if (currency === "usd") {
-        return product.price * quantity
+        return price * quantity
       }
-
-      return product.price * quantity * 40
+      return price * quantity * 40
     }
     return calculate
   }, [currency, product.price, quantity])
@@ -55,7 +54,7 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
     event.preventDefault()
     invariant(quantity < 10, 'Quantity must be less than 10')
     setQuantity(quantity + 1)
-    addPrice(product.price * quantity )
+    addPrice(product.price * quantity)
   }
 
   //quantity removing incorectly

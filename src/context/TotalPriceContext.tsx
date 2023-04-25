@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react"
+import { readItemFromStorage, setItemToStorage } from "../utils/handleStorage";
 
 interface ITotalPriceContext {
   totalPrice: number;
@@ -13,14 +14,22 @@ export const TotalPriceContext = createContext<ITotalPriceContext>({
 });
 
 export const TotalPriceState = ({ children }: { children: React.ReactNode }) => {
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(readItemFromStorage('totalPrice') || 0)
 
   const addPrice = (price: number) => {
-    setTotalPrice((prevTotalPrice) => prevTotalPrice + price)
+    setTotalPrice((prevTotalPrice: number) => {
+      const newTotalPrice = prevTotalPrice + price;
+      setItemToStorage('totalPrice', newTotalPrice);
+      return newTotalPrice;
+    });
   }
 
   const removePrice = (price: number) => {
-    setTotalPrice((prevTotalPrice) => prevTotalPrice - price)
+    setTotalPrice((prevTotalPrice: number) => {
+      const newTotalPrice = prevTotalPrice - price;
+      setItemToStorage('totalPrice', newTotalPrice);
+      return newTotalPrice;
+    });
   }
 
   return (

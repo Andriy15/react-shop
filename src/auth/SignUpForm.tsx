@@ -66,13 +66,13 @@ export function SignUpForm(props: SignUpProps) {
          >
            Sign Up
          </button>
-         <button
-            type="submit"
-            className="bg-gray-200 hover:bg-gray-300 text-blue-500 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full h-10"
-            onClick={props.onToggleSignUp}
-         >
-           Already have an account?
-         </button>
+          <button
+              type="submit"
+              className="bg-gray-200 hover:bg-gray-300 text-blue-500 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full h-10"
+              onClick={props.onToggleSignUp}
+          >
+            Already have an account?
+          </button>
        </div>
        <div>
          <ToastContainer />

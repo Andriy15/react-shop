@@ -1,5 +1,5 @@
 import {useProducts} from "../hooks/products-hooks";
-import {useContext} from "react";
+import React, {useContext} from "react";
 import {Loader} from "../components/Loader";
 import {Error} from "../components/Error";
 import Product from "../components/Product";
@@ -7,8 +7,8 @@ import {CurrencyContext} from "../context/CurrencyContext";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion, useScroll } from "framer-motion"
-import React from "react";
 import { HoverCardDemo } from "../components/HoverCardDemo";
+
 
 function ProductPages() {
   const {currency} = useContext(CurrencyContext)

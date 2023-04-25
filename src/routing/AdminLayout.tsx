@@ -3,11 +3,14 @@ import { SignInForm } from '../auth/SignInForm'
 import { SignUpForm } from '../auth/SignUpForm'
 import { Loader } from '../components/Loader'
 import { useProducts } from '../hooks/products-hooks'
+import { Routes, BrowserRouter, Route } from 'react-router-dom'
 
 interface AdminLayoutProps {
   submit: () => void
 }
 
+
+// change this component to correct structure and add to it component Routes
 
 export function AdminLayout(props: AdminLayoutProps) {
   const [formSubmitted, setFormSubmitted] = useState(false)
@@ -40,12 +43,11 @@ export function AdminLayout(props: AdminLayoutProps) {
     )
   }
 
-  //add adminLayout which will be check if user is logged in and if not it will render sign in or sign up form
-  //add structure to routing component which will be check if user is logged in and if not it will render sign in or sign up form
-  //add localStorage to save user data isntead of cookies
-  //check in github any other way to check if user is logged in
-  //add component Routes to App.tsx instead this structure
   return (
-    <></> 
+    <></>
+    // <Routes>
+    //   <Route path='/' element={<SignInForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />} />
+    //   <Route path='/signup' element={<SignUpForm onSubmit={handleFormSubmit} onToggleSignUp={toggleSignUp} />} />
+    // </Routes>
   )
 }
