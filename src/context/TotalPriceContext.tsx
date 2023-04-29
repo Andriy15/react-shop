@@ -13,6 +13,8 @@ export const TotalPriceContext = createContext<ITotalPriceContext>({
   removePrice: () => {},
 });
 
+
+// Fix total price adding with quantity 
 export const TotalPriceState = ({ children }: { children: React.ReactNode }) => {
   const [totalPrice, setTotalPrice] = useState(readItemFromStorage('totalPrice') || 0)
 

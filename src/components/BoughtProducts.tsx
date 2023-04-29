@@ -1,11 +1,12 @@
 import { IProduct } from "../models";
 import {CurrencyContext} from "../context/CurrencyContext";
-import React, {useContext, useMemo, useState} from "react";
+import React, {useContext, useState} from "react";
 import {useActions} from "../hooks/use-actions";
 import {TotalPriceContext} from "../context/TotalPriceContext";
 import {CountContext} from "../context/CountItemsInBucketContext";
 import invariant from "tiny-invariant";
-
+import {calculateValue} from "../utils/calculateValue";
+import { ToastContainer, toast } from "react-toastify";
 
 interface BoughtItemProps {
   product: IProduct,
@@ -22,16 +23,6 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
 
   const {removeBucket} = useActions()
 
-  const calculateValue = useMemo(() => {
-    function calculate(currency: string, price: number, quantity: number) {
-      if (currency === "usd") {
-        return price * quantity
-      }
-      return price * quantity * 40
-    }
-    return calculate
-  }, [currency, product.price, quantity])
-
 
   const removeFromBucket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
@@ -45,6 +36,14 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
     removeBucket(data)
     removePrice(product.price)
     removeCount()
+    toast.error('Product removed from bucket', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+    })
   }
 
   //quantity adding incorectly 
@@ -62,7 +61,8 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
     event.preventDefault()
     invariant(quantity > 1, 'Quantity must be more than 1')
     setQuantity(quantity - 1)
-    removePrice(totalPrice - product.price * quantity)
+    //remove price with quantity
+    removePrice(product.price * quantity)
   }
 
 
@@ -73,7 +73,7 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
          <div className="flex flex-col ml-4">
            <h2 className="text-lg font-medium text-gray-900">{product.title}</h2>
            <p className="text-sm font-medium text-gray-500">Category: {product.category}</p>
-           <p className="text-lg font-medium text-gray-900">Price: {calculateValue(currency, product.price, quantity)}{currency === 'usd' ? ' $' : ' UAH'}</p>
+           <p className="text-lg font-medium text-gray-900">Price: {calculateValue(currency, product.price)}{currency === 'usd' ? ' $' : ' UAH'}</p>
          </div>
        </div>
        <div className="flex justify-between items-center mt-4">
@@ -100,6 +100,7 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
            Remove
          </button>
        </div>
+       <ToastContainer />
      </div>
   );
 }

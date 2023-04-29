@@ -3,9 +3,9 @@ import ProductPages from "./pages/ProductPages";
 import { BucketPage } from "./pages/BucketPage";
 import React, { useState } from "react";
 import { useProducts } from "./hooks/products-hooks";
-import { Navigation } from "./components/Navigation";
 import { AdminLayout } from "./routing/AdminLayout";
 import { readItemFromStorage } from "./utils/handleStorage";
+import { NavLayout } from "./layout/NavLayout";
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
   const handleFormSubmit = () => {
     setFormSubmitted(true)
   }
-
+  
 
   if (!formSubmitted && !readItemFromStorage("user")) {
     return <AdminLayout submit={handleFormSubmit} />
@@ -27,14 +27,13 @@ function App() {
   // create component Redirect to check if user is logged in and if not it will redirect to sign in page
   // change AdminLayout to correct structure and add to it component Routes 
   return (
-     <>
-       <Navigation products={products} />
+     <NavLayout products={products}>
        <Routes>
           <Route path="/" element={<ProductPages />} />
           <Route path="/bucket" element={<BucketPage />} />
           <Route path="*" element={<Navigate to="/signup" />} />
        </Routes>
-     </>
+     </NavLayout>
   )
 }
 

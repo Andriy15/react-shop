@@ -10,7 +10,6 @@ export function AlertDialogOut() {
     const [user] = useAuthState(auth)
 
 
-
     const handleLogout = () => {
       auth.signOut()
       removeItemFromStorage("user")

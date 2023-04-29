@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 interface DetailsProductProps {
   showDetails: string;
   hideDetails: string;
@@ -25,7 +26,7 @@ export function ButtonDetailsProduct(props: DetailsProductProps) {
   const handleClick = () => {
     setDetails(!details)
     props.onDetails(!details)
-  };
+  }
 
 
   return (
