@@ -38,7 +38,7 @@ export function useProducts() {
     fetchProducts()
   }, [])
 
-  console.log(products)
+  
 
   return {error, loading, products}
 }
