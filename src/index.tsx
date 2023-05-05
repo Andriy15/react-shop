@@ -14,17 +14,17 @@ const root = ReactDOM.createRoot(
 )
 
 root.render(
-   <Provider store={store}>
-     <BrowserRouter>
-       <>
-         <TotalPriceState>
-         <CurrencyState>
-         <CountState>
-           <App />
-         </CountState>
-         </CurrencyState>
-         </TotalPriceState>
-       </>
-     </BrowserRouter>
-   </Provider>
+  <Provider store={store}>
+    <BrowserRouter>
+      <>
+        <TotalPriceState>
+        <CurrencyState>
+        <CountState>
+          <App />
+        </CountState>
+        </CurrencyState>
+        </TotalPriceState>
+      </>
+    </BrowserRouter>
+  </Provider>
 )

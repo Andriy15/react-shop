@@ -1,8 +1,8 @@
 import {useProducts} from "../hooks/products-hooks";
 import React, {useContext} from "react";
 import {Loader} from "../components/Loader";
-import {Error} from "../components/Error";
-import Product from "../components/Product";
+import {Error} from "../components/error/Error";
+import Product from "../components/product/Product";
 import {CurrencyContext} from "../context/CurrencyContext";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,7 +13,7 @@ import { HoverCardDemo } from "../components/HoverCardDemo";
 function ProductPages() {
   const {currency} = useContext(CurrencyContext)
 
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll()
 
   const {loading, error, products} = useProducts()
 
@@ -42,9 +42,9 @@ function ProductPages() {
      </div>
 
 
-     <footer className='container mx-auto max-w-2xl pt-5 mb-5'>
+      <footer className='container mx-auto max-w-2xl pt-5 mb-5'>
          <div className='flex justify-center'>
-            <p className='text-gray-500 text-sm'>© 2021 All rights reserved.</p>
+            <p className='text-gray-500 text-sm'>© 2023 All rights reserved.</p>
          </div>
          <div className='flex justify-center'>
             <p className='text-gray-500 text-sm'>Made with ❤️ by <HoverCardDemo /></p>

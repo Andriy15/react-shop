@@ -1,17 +1,29 @@
 import {useEffect, useState} from "react";
 import {IProduct} from "../models";
 import axios, {AxiosError} from "axios";
+import {collection, getDocs} from "firebase/firestore";
+import {db} from "../firebase";
 
 export function useProducts() {
   const [products, setProducts] = useState<IProduct[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
+  // const getProducts = async () => {
+  //   const productCol = collection(db, "products")
+  //   const snapshot = await getDocs(productCol)
+
+  //   const products = snapshot.docs.map(doc => doc.data() as IProduct)
+  //   setProducts(products)
+
+  //   console.log(products)
+  // }
+
   async function fetchProducts() {
     try {
       setError('')
       setLoading(true)
-      const response = await axios.get<IProduct[]>('https://fakestoreapi.com/products?limit=20')
+      const response = await axios.get<IProduct[]>('https://fakestoreapi.com/products')
       setProducts(response.data)
       setLoading(false)
 
@@ -25,6 +37,8 @@ export function useProducts() {
   useEffect(() => {
     fetchProducts()
   }, [])
+
+  console.log(products)
 
   return {error, loading, products}
 }

@@ -55,7 +55,7 @@ export function SignUpForm(props: SignUpProps) {
          {errors.email && <span className="text-red-600">This field is required</span>}
        </div>
        <div className="mb-4">
-       <TextField id='password' type='password' {...register('password', { required: true })} variant='outlined' label='Password' className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500" />
+       <TextField id='password' type='password' {...register('password', { required: true, minLength: 8 })} variant='outlined' label='Password' className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500" />
          {errors.password?.type === 'required' && <span className="text-red-600">This field is required</span>}
          {errors.password?.type === 'minLength' && <span className="text-red-600">Min length is 8 symbols</span>}
        </div>
