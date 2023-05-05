@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 import { SignInForm } from './auth/SignInForm'
-import App from './App'
+import AdminRoute from './admin/AdminRoute'
 
 
 test("Crushing SignInForm" , () => {
@@ -11,3 +11,9 @@ test("Crushing SignInForm" , () => {
   } }  />)
 })
 
+
+test("Crushing Admin" , () => {
+  const { getByText } = render(<AdminRoute onSubmit={function (): void {
+    throw new Error('Function not implemented.')
+  } } />)
+})
