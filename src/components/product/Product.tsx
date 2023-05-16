@@ -1,4 +1,4 @@
-import { IProduct } from "../../models";
+import { IProduct } from "../../models/models";
 import React, {useContext, useState} from "react";
 import {CurrencyContext} from "../../context/CurrencyContext";
 import 'reactjs-popup/dist/index.css';

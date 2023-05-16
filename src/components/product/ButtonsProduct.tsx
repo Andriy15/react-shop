@@ -1,6 +1,6 @@
 import Popup from "reactjs-popup";
 import React, {useContext, useState} from "react";
-import {IProduct} from "../../models";
+import {IProduct} from "../../models/models";
 import {useAppSelector} from "../../hooks/redux";
 import {toast, ToastContainer} from "react-toastify";
 import {TotalPriceContext} from "../../context/TotalPriceContext";

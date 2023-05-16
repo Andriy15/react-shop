@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {IProduct} from "../models";
+import {IProduct} from "../models/models";
 import axios, {AxiosError} from "axios";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "../firebase";
@@ -38,7 +38,6 @@ export function useProducts() {
     fetchProducts()
   }, [])
 
-  
 
   return {error, loading, products}
 }

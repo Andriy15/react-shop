@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Popup from "reactjs-popup";
 import { useInView } from "framer-motion";
-import { IProduct } from "../models";
+import { IProduct } from "../models/models";
 import Product from "../components/product/Product";
 import { CurrencyContext } from "../context/CurrencyContext";
 
@@ -67,15 +67,6 @@ function AdminRoute(props: SubmitProps) {
     }
   }
   
-
-  const getProducts = async () => {
-    const productCol = collection(db, "products")
-    const snapshot = await getDocs(productCol)
-
-    const products = snapshot.docs.map(doc => doc.data() as IProduct)
-    setProducts(products)
-  }
-
   // should to fix editing product 
   const editProduct = async (e: React.MouseEvent<HTMLButtonElement>, product: IProduct) => {
     e.preventDefault()
@@ -90,13 +81,23 @@ function AdminRoute(props: SubmitProps) {
       console.error("Error editing document: ", e)
     }
   }
+  
+  const getProducts = async () => {
+    const productCol = collection(db, "products")
+    const snapshot = await getDocs(productCol)
+
+    const products = snapshot.docs.map(doc => doc.data() as IProduct)
+    setProducts(products)
+  }
+
 
   // should to fix deleting product by documentId
   const deleteProduct = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     try {
       const snapshot = await getDocs(collection(db, "products"))
-      await deleteDoc(doc(db, "products", snapshot.docs[0].id))
+      const docId = snapshot.docs[0].id
+      await deleteDoc(doc(db, 'products', docId))
       props.onSubmit()
       toast.error('Product was deleted successfully', {
         position: "top-right",
@@ -186,7 +187,7 @@ function AdminRoute(props: SubmitProps) {
           <>
             <Product product={product} currency={currency} key={product.id} />
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" onClick={(e) => editProduct(e, product)}>Edit</button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" onClick={(e) => deleteProduct(e)}>Delete</button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" onClick={e => deleteProduct(e)}>Delete</button>
           </>
         ))}
       </div>

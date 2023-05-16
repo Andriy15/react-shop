@@ -1,4 +1,4 @@
-import {IProduct} from "../models";
+import {IProduct} from "../models/models";
 import {getAuth} from "firebase/auth";
 import {app} from "../firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';

@@ -1,4 +1,4 @@
-import { IProduct } from "../../models";
+import { IProduct } from "../../models/models";
 import {CurrencyContext} from "../../context/CurrencyContext";
 import React, {useContext, useState} from "react";
 import {useActions} from "../../hooks/use-actions";

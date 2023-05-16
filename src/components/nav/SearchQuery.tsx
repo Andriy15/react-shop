@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IProduct } from '../../models'
+import { IProduct } from '../../models/models'
 
 interface SearchQueryProps {
     products: IProduct[]
@@ -32,7 +32,7 @@ export function SearchQuery({ products }: SearchQueryProps) {
                     {filteredProducts.length > 0 ? (
                         <ul>
                         {filteredProducts.map((product: IProduct) => (
-                            <li key={product.id} className="text-gray-800 py-2 hover:bg-gray-200 cursor-pointer">
+                            <li key={product.id} className="text-gray-800 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => setSearchQuery(product.title)}>
                                 <span className='py-4'>
                                 {product.title.split(" ").slice(0, 5).join(" ")}
                                 </span>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import BoughtProducts from "../components/product/BoughtProducts";
 import {useContext, useState} from "react";
 import { CurrencyContext } from "../context/CurrencyContext";
-import { IProduct } from "../models";
+import { IProduct } from "../models/models";
 import { TotalPriceContext } from "../context/TotalPriceContext";
 import { calculateValue } from "../utils/calculateValue";
 
