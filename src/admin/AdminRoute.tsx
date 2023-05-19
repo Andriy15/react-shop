@@ -43,8 +43,8 @@ function AdminRoute(props: SubmitProps) {
   }
 
   // form submit
-  const onSubmit = (data: IProduct) => {
-    addProduct(data)
+  const onSubmit = async (data: IProduct) => {
+    await addProduct(data)
     props.onSubmit()
   }
 
@@ -61,7 +61,7 @@ function AdminRoute(props: SubmitProps) {
         draggable: true,
       })
       reset()
-      getProducts()
+      await getProducts()
     } catch (e) {
       console.error("Error adding document: ", e)
     }
@@ -76,7 +76,7 @@ function AdminRoute(props: SubmitProps) {
       await updateDoc(productRef, product)
       setEditing(true)
       props.onSubmit()
-      getProducts()
+      await getProducts()
     } catch (e) {
       console.error("Error editing document: ", e)
     }
@@ -96,8 +96,8 @@ function AdminRoute(props: SubmitProps) {
     e.preventDefault()
     try {
       const snapshot = await getDocs(collection(db, "products"))
-      const docId = snapshot.docs[0].id
-      await deleteDoc(doc(db, 'products', docId))
+      const productRef = doc(db, "products", snapshot.docs[0].id)
+      await deleteDoc(productRef)
       props.onSubmit()
       toast.error('Product was deleted successfully', {
         position: "top-right",
