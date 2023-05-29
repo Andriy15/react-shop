@@ -91,12 +91,12 @@ function AdminRoute(props: SubmitProps) {
   }
 
 
-  // should to fix deleting product by documentId
-  const deleteProduct = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  // should to fix deleting product by documentId 
+  const deleteProduct = async (e: React.MouseEvent<HTMLButtonElement>, product: IProduct) => {
     e.preventDefault()
     try {
       const snapshot = await getDocs(collection(db, "products"))
-      const productRef = doc(db, "products", snapshot.docs[0].id)
+      const productRef = doc(db, "products", snapshot.docs[product.id].id)
       await deleteDoc(productRef)
       props.onSubmit()
       toast.error('Product was deleted successfully', {
@@ -106,7 +106,7 @@ function AdminRoute(props: SubmitProps) {
         closeOnClick: true,
         draggable: true,
       })
-      getProducts()
+      await getProducts()
     } catch (e) {
       console.error("Error removing document: ", e)
     }
@@ -118,6 +118,14 @@ function AdminRoute(props: SubmitProps) {
       <Popup open={isOpen} onClose={handleClose}>
         <div className="max-w-md mx-auto mt-8 h-96 overflow-y-scroll">
           <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto mt-8">
+            <div className="mb-4">
+              <label htmlFor="id" className="block text-gray-700 font-bold mb-2">Id</label>
+              <input type="text" {...register("id", { required: true })} id="id"
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.id ? 'border-red-500' : ''}`}
+              />
+              {errors.id && <span className="text-red-500 text-sm">{errors.id.message || 'Це поле обов\'язкове'}</span>}
+            </div>
+
             <div className="mb-4">
               <label htmlFor="title" className="block text-gray-700 font-bold mb-2">Title</label>
               <input type="text" {...register("title", { required: true })} id="title"
@@ -187,7 +195,7 @@ function AdminRoute(props: SubmitProps) {
           <>
             <Product product={product} currency={currency} key={product.id} />
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" onClick={(e) => editProduct(e, product)}>Edit</button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" onClick={e => deleteProduct(e)}>Delete</button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" onClick={e => deleteProduct(e, product)}>Delete</button>
           </>
         ))}
       </div>

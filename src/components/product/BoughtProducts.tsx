@@ -11,10 +11,9 @@ import { ToastContainer, toast } from "react-toastify";
 interface BoughtItemProps {
   product: IProduct,
   currency: string,
-  quantityItem: number
 }
 
-function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
+function BoughtProducts({ product }: BoughtItemProps) {
   const {currency} = useContext(CurrencyContext)
   const { removePrice, addPrice } = useContext(TotalPriceContext)
   const {removeCount} = useContext(CountContext)
@@ -46,14 +45,14 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
     })
   }
 
-  //quantity adding incorectly 
   //dont change product.price * quantity 
-  //fix total price adding with quantity
+  //fix total price adding and removing with quantity
   const handleAdd = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     invariant(quantity < 10, 'Quantity must be less than 10')
     setQuantity(quantity + 1)
-    addPrice(product.price * quantity)
+    const newPrice = product.price * quantity
+    addPrice(newPrice)
   }
 
   //quantity removing incorectly
@@ -61,8 +60,8 @@ function BoughtProducts({ product, quantityItem }: BoughtItemProps) {
     event.preventDefault()
     invariant(quantity > 1, 'Quantity must be more than 1')
     setQuantity(quantity - 1)
-    //remove price with quantity
-    removePrice(product.price * quantity)
+    const newPrice = product.price * quantity
+    removePrice(newPrice)
   }
 
 

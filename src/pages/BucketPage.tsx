@@ -9,14 +9,11 @@ import { calculateValue } from "../utils/calculateValue";
 
 interface ProductProps extends IProduct {
   currency: string;
-  quantityItem: number;
 }
 
 
 export function BucketPage() {
   const data = useAppSelector((state) => state.bucket.data)
-
-  const [quantity] = useState(1) 
 
   const { currency } = useContext(CurrencyContext);
   const { totalPrice } = useContext(TotalPriceContext)
@@ -47,7 +44,6 @@ export function BucketPage() {
               product={{ ...product } as ProductProps}
               key={product.id}
               currency={currency}
-              quantityItem={quantity}
             />
         ))}
       </div>

@@ -20,18 +20,18 @@ export const TotalPriceState = ({ children }: { children: React.ReactNode }) => 
 
   const addPrice = (price: number) => {
     setTotalPrice((prevTotalPrice: number) => {
-      const newTotalPrice = prevTotalPrice + price;
-      setItemToStorage('totalPrice', newTotalPrice);
-      return newTotalPrice;
-    });
+      const newTotalPrice = prevTotalPrice + price
+      setItemToStorage('totalPrice', newTotalPrice)
+      return newTotalPrice
+    })
   }
 
   const removePrice = (price: number) => {
     setTotalPrice((prevTotalPrice: number) => {
-      const newTotalPrice = prevTotalPrice - price;
-      setItemToStorage('totalPrice', newTotalPrice);
-      return newTotalPrice;
-    });
+      const newTotalPrice = prevTotalPrice - price
+      setItemToStorage('totalPrice', newTotalPrice)
+      return newTotalPrice
+    })
   }
 
   return (
