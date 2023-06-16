@@ -3,10 +3,15 @@ import React, { useState } from 'react';
 import { db } from '../firebase';
 import { collection } from '@firebase/firestore';
 import { IFeedback } from '../models/models';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from '@firebase/auth';
+import {app} from '../firebase';
 
 function FeedbackForm() {
-  const [feedbackText, setFeedbackText] = useState('');
-  const [id, setId] = useState(0);
+  const [feedbackText, setFeedbackText] = useState('')
+  const [id, setId] = useState(0)
+  const auth = getAuth(app)
+  const [user] = useAuthState(auth)
 
   const generateId = () => {
     setId((prev) => prev + 1);
@@ -19,7 +24,7 @@ function FeedbackForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addFeedback({ text: feedbackText, date: new Date().toString() });
+    addFeedback({ text: feedbackText, date: new Date().toString(), email: user?.email });
     setFeedbackText('')
     generateId()
   };

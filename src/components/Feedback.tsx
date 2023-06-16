@@ -34,14 +34,17 @@ function Feedback() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-semibold mb-8">Feedback</h1>
       <FeedbackForm />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+      <div className="mt-8 container">
+        <div className="flex items-center mb-4">
+          <span className="text-lg font-semibold text-gray-800">All Feedbacks from customers</span>
+        </div>
         {feedbacks.map((feedback) => (
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-4 overflow-auto">
             <p className="text-sm text-gray-500 mb-2">{feedback.date}</p>
-            <p className="text-lg font-semibold mb-4">{feedback.text}</p>
-            <div className="flex items-center">
-              <span className="text-gray-700">{user?.displayName}</span>
+            <div className="flex items-center mb-2">
+              <span className="text-gray-700">{feedback.email}</span>
             </div>
+            <p className="text-lg font-semibold text-gray-800">{feedback.text}</p>
           </div>
         ))}
       </div>

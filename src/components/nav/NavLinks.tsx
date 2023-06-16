@@ -21,6 +21,12 @@ export function NavLinks() {
                 >
                 <Badge badgeContent={count} color="primary">Bucket</Badge>
             </NavLink>
+            <NavLink
+                className="mx-4 text-gray-600 hover:text-gray-900"
+                to="/feedback"
+                >
+                Feedbacks
+            </NavLink>
         </>
     )
 }
