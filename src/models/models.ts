@@ -11,3 +11,8 @@ export interface IProduct {
     count: number
   }
 }
+
+export interface IFeedback {
+  text: string,
+  date: string
+}

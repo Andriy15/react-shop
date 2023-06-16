@@ -4,7 +4,7 @@ import {setupListeners} from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
   reducer: {
-    bucket: bucketReducer
+    bucket: bucketReducer,
   }
 })
 

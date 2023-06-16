@@ -11,7 +11,6 @@ interface ProductProps extends IProduct {
   currency: string;
 }
 
-
 export function BucketPage() {
   const data = useAppSelector((state) => state.bucket.data)
 

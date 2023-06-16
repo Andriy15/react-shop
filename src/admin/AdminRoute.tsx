@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore"; 
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query } from "firebase/firestore"; 
 import { db } from "../firebase";
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -92,25 +92,25 @@ function AdminRoute(props: SubmitProps) {
 
 
   // should to fix deleting product by documentId 
-  const deleteProduct = async (e: React.MouseEvent<HTMLButtonElement>, product: IProduct) => {
-    e.preventDefault()
+  const deleteProduct = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     try {
       const snapshot = await getDocs(collection(db, "products"))
-      const productRef = doc(db, "products", snapshot.docs[product.id].id)
+      const productRef = doc(db, "products", snapshot.docs[0].id)
       await deleteDoc(productRef)
-      props.onSubmit()
+      props.onSubmit();
       toast.error('Product was deleted successfully', {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         draggable: true,
-      })
-      await getProducts()
+      });
+      await getProducts();
     } catch (e) {
-      console.error("Error removing document: ", e)
+      console.error("Error removing document: ", e);
     }
-  }
+  };
 
   return (
     <div ref={ref}>
@@ -195,8 +195,7 @@ function AdminRoute(props: SubmitProps) {
           <>
             <Product product={product} currency={currency} key={product.id} />
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" onClick={(e) => editProduct(e, product)}>Edit</button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" onClick={e => deleteProduct(e, product)}>Delete</button>
-          </>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" onClick={(e) => deleteProduct(e)}>Delete</button></>
         ))}
       </div>
 

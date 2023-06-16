@@ -3,7 +3,7 @@ import {bindActionCreators} from "@reduxjs/toolkit";
 import {bucketActions} from "../store/slice";
 
 const actions = {
-  ...bucketActions
+  ...bucketActions,
 }
 
 export const useActions = () => {

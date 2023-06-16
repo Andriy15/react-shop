@@ -15,7 +15,7 @@ export const bucketSlice = createSlice({
   initialState,
   reducers: {
     addToBucket(state, action: PayloadAction<{ id: any, title: string, image: string, price: string, category: string }>) {
-      state.data.push(action.payload)
+      state.data.push(action.payload) 
       localStorage.setItem(LS_REACT_KEY, JSON.stringify(state.data))
     },
 

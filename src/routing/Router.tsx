@@ -12,6 +12,7 @@ import { app } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useProducts } from '../hooks/products-hooks'
 import Playground from '../playground/Playground'
+import Feedback from '../components/Feedback'
 
 
 function Router() {
@@ -40,6 +41,7 @@ function Router() {
          {user?.email === 'andriychikulay@gmail.com' && <Route path="/admin" element={<AdminRoute onSubmit={handleFormSubmit} />} />}
          <Route path="*" element={<ErrorPage />} />
          <Route path='/playground' element={<Playground />} />
+         <Route path='/feedback' element={<Feedback />} />
       </Routes>
     </NavLayout>
  )

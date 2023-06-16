@@ -9,15 +9,15 @@ export function useProducts() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  // const getProducts = async () => {
-  //   const productCol = collection(db, "products")
-  //   const snapshot = await getDocs(productCol)
+//   const getProducts = async () => {
+//     const productCol = collection(db, "products")
+//     const snapshot = await getDocs(productCol)
 
-  //   const products = snapshot.docs.map(doc => doc.data() as IProduct)
-  //   setProducts(products)
+//     const products = snapshot.docs.map(doc => doc.data() as IProduct)
+//     setProducts(products)
 
-  //   console.log(products)
-  // }
+//     console.log(products)
+//   }
 
   async function fetchProducts() {
     try {
@@ -36,6 +36,7 @@ export function useProducts() {
 
   useEffect(() => {
     fetchProducts()
+    // getProducts()
   }, [])
 
 
