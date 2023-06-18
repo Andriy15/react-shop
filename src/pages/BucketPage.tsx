@@ -1,11 +1,11 @@
-import { useAppSelector } from "../hooks/redux";
+import { useAppSelector } from "../feature/store/hooks/redux";
 import { Link } from "react-router-dom";
-import BoughtProducts from "../components/product/BoughtProducts";
+import BoughtProducts from "../shared/BoughtProductsCard";
 import {useContext, useState} from "react";
-import { CurrencyContext } from "../context/CurrencyContext";
-import { IProduct } from "../models/models";
-import { TotalPriceContext } from "../context/TotalPriceContext";
-import { calculateValue } from "../utils/calculateValue";
+import { CurrencyContext } from "../feature/nav/context/CurrencyContext";
+import { IProduct } from "../feature/product/Product.models";
+import { TotalPriceContext } from "./context/TotalPriceContext";
+import { calculateValue } from "../feature/utils/calculateValue";
 
 interface ProductProps extends IProduct {
   currency: string;

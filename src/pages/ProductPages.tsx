@@ -1,13 +1,13 @@
-import {useProducts} from "../hooks/products-hooks";
+import {useProducts} from "../feature/product/hooks/products.hooks";
 import React, {useContext} from "react";
-import {Loader} from "../components/Loader";
-import {Error} from "../components/error/Error";
-import Product from "../components/product/Product";
-import {CurrencyContext} from "../context/CurrencyContext";
+import {Loader} from "../shared/Loader";
+import {Error} from "../feature/error/Error";
+import Product from "../feature/product/Product";
+import {CurrencyContext} from "../feature/nav/context/CurrencyContext";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion, useScroll } from "framer-motion"
-import { HoverCardDemo } from "../components/HoverCardDemo";
+import { HoverCardDemo } from "../shared/HoverCardDemo";
 
 
 function ProductPages() {
