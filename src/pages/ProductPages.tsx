@@ -1,7 +1,7 @@
 import {useProducts} from "../feature/product/hooks/products.hooks";
 import React, {useContext} from "react";
 import {Loader} from "../shared/Loader";
-import {Error} from "../feature/error/Error";
+import {Error} from "../shared/error/Error";
 import Product from "../feature/product/Product";
 import {CurrencyContext} from "../feature/nav/context/CurrencyContext";
 import {toast, ToastContainer} from "react-toastify";

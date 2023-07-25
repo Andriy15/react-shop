@@ -7,17 +7,28 @@ import { NavLink } from "react-router-dom";
 import { SearchQuery } from "../nav/SearchQuery";
 import { Currency } from '../nav/Currency'
 import { NavLinks } from '../nav/NavLinks'
+import { Badge } from '@mui/material';
+import { CountContext } from '../nav/context/CountItemsInBucketContext';
+import { useContext } from 'react';
+import { ModalContext } from "../bucket/context/Modal.context";
+import { ModalBucket } from "../bucket/ModalBucket";
 
 interface Props {
     products: IProduct[],
     children: React.ReactNode
 }
 
-
 export function NavLayout( {products, children}: Props ) {
 
     const auth = getAuth(app)
     const [user] = useAuthState(auth)
+
+    const {count} = useContext(CountContext)
+    const {modal, setModal} = useContext(ModalContext)
+
+    const toggle = () => {
+        setModal(!modal)
+    }
   
     return (
         <>
@@ -36,6 +47,16 @@ export function NavLayout( {products, children}: Props ) {
 
                         {user &&  <AlertDialogOut /> }
 
+                        <Badge badgeContent={count} color="primary">
+                            <button
+                                onClick={toggle}
+                                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                            >
+                                Bucket
+                            </button>
+                        </Badge>
+                        {modal && <ModalBucket />}
+
                         {user?.email === "andriychikulay@gmail.com" && <NavLink className="text-gray-900 font-bold text-lg ml-4" to="/admin">Admin</NavLink>}
                     </div>
                 </div>
@@ -44,5 +65,5 @@ export function NavLayout( {products, children}: Props ) {
                 {children}
             </main>
         </>
-    );
+    )
 }

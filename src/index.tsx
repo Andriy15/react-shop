@@ -5,8 +5,9 @@ import {BrowserRouter} from "react-router-dom";
 import {CurrencyState} from "./feature/nav/context/CurrencyContext";
 import {Provider} from "react-redux";
 import {store} from "./feature/store";
-import {TotalPriceState} from "./pages/context/TotalPriceContext";
+import {TotalPriceState} from "./feature/product/context/TotalPriceContext";
 import {CountState} from "./feature/nav/context/CountItemsInBucketContext";
+import {ModalState} from "./feature/bucket/context/Modal.context";
 
 
 const root = ReactDOM.createRoot(
@@ -17,6 +18,7 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <>
+        <ModalState>
         <TotalPriceState>
         <CurrencyState>
         <CountState>
@@ -24,6 +26,7 @@ root.render(
         </CountState>
         </CurrencyState>
         </TotalPriceState>
+        </ModalState>
       </>
     </BrowserRouter>
   </Provider>

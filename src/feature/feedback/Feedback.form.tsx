@@ -19,8 +19,8 @@ function FeedbackForm() {
   }
 
   const addFeedback = async (feedback: IFeedback) => {
-    const docRef = await addDoc(collection(db, "feedbacks"), feedback)
-    console.log("Document written with ID: ", docRef.id)
+    await addDoc(collection(db, "feedbacks"), feedback)
+    window.location.reload() 
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,7 +29,7 @@ function FeedbackForm() {
     addFeedback({ text: feedbackText, date: new Date().toString(), email: user?.email });
     setFeedbackText('')
     generateId()
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit} className="mb-4">

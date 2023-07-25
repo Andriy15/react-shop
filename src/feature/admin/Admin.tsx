@@ -18,6 +18,7 @@ interface SubmitProps {
 function Admin(props: SubmitProps) {
   const [products, setProducts] = useState<IProduct[]>([])
   const [editing, setEditing] = useState(false)
+  const [docsId, setDocsId] = useState<string[]>([])
 
   const { currency } = useContext(CurrencyContext)
 
@@ -53,6 +54,7 @@ function Admin(props: SubmitProps) {
     try {
       const docRef = await addDoc(collection(db, "products"), product)
       props.onSubmit()
+      setDocsId([...docsId, docRef.id])
       toast.success(`Product added successfully with id ${docRef.id}`, {
         position: "top-right",
         autoClose: 2000,
@@ -88,29 +90,30 @@ function Admin(props: SubmitProps) {
 
     const products = snapshot.docs.map(doc => doc.data() as IProduct)
     setProducts(products)
+    console.log(docsId)
   }
 
 
   // should to fix deleting product by documentId 
-  const deleteProduct = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const deleteProduct = async (e: React.MouseEvent<HTMLButtonElement>, product: IProduct) => {
+    e.preventDefault()
     try {
-      const snapshot = await getDocs(collection(db, "products"))
-      const productRef = doc(db, "products", snapshot.docs[0].id)
+      // const snapshot = await getDocs(collection(db, "products"))
+      const productRef = doc(db, "products", docsId[product.id])
       await deleteDoc(productRef)
-      props.onSubmit();
+      props.onSubmit()
       toast.error('Product was deleted successfully', {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         draggable: true,
-      });
-      await getProducts();
+      })
+      await getProducts()
     } catch (e) {
-      console.error("Error removing document: ", e);
+      console.error("Error removing document: ", e)
     }
-  };
+  }
 
   return (
     <div ref={ref}>
@@ -195,7 +198,7 @@ function Admin(props: SubmitProps) {
           <>
             <Product product={product} currency={currency} key={product.id} />
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" onClick={(e) => editProduct(e, product)}>Edit</button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" onClick={(e) => deleteProduct(e)}>Delete</button></>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5" onClick={(e) => deleteProduct(e, product)}>Delete</button></>
         ))}
       </div>
 
