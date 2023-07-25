@@ -3,7 +3,7 @@ import React, {useContext, useState} from "react";
 import {IProduct} from "../feature/product/Product.models";
 import {useAppSelector} from "../feature/store/hooks/redux";
 import {toast, ToastContainer} from "react-toastify";
-import {TotalPriceContext} from "../pages/context/TotalPriceContext";
+import {TotalPriceContext} from "../feature/product/context/TotalPriceContext";
 import {useActions} from "../feature/store/hooks/use-actions";
 import {CountContext} from "../feature/nav/context/CountItemsInBucketContext";
 import {Tooltip} from "@mui/material";
@@ -49,15 +49,6 @@ export function ButtonsProduct({ product, removeButton, buyButton }: ProductProp
     setIsBuy(true)
     addPrice(product.price)
     addCount()
-    toast.success('Product was added to Bucket!!!', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
   }
   const removeFromBucket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -72,15 +63,6 @@ export function ButtonsProduct({ product, removeButton, buyButton }: ProductProp
     setIsBuy(false)
     removePrice(product.price)
     removeCount()
-    toast.error('Product was removed from Bucket!!!', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
   }
 
   return (

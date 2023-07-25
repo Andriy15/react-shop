@@ -26,6 +26,7 @@ export function useProducts() {
       const response = await axios.get<IProduct[]>('https://fakestoreapi.com/products')
       setProducts(response.data)
       setLoading(false)
+      console.log(products)
 
     } catch (e: unknown) {
       const error = e as AxiosError

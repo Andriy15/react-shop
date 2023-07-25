@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { SignInForm } from './SignInForm'
-import { SignUpForm } from './SignUpForm'
+import { SignInForm } from './SignIn.form'
+import { SignUpForm } from './SignUp.form'
 import { Loader } from '../../shared/Loader'
 import { useProducts } from '../product/hooks/products.hooks'
 

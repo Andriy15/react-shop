@@ -4,26 +4,20 @@ import { collection, getDocs } from '@firebase/firestore';
 import { IFeedback } from '../feedback/Feedback.models';
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
+import { useFeedbacks } from './hooks/feedback.hook';
 
 function Feedback() {
 
-    const [feedbacks, setFeedbacks] = useState<IFeedback[]>([])
+    const { feedbacks } = useFeedbacks()
+
+    const [feedback, setFeedback] = useState<IFeedback[]>([])
 
     const ref = useRef(null)
     const isInView = useInView(ref)
 
     useEffect(() => {
-        getFeedbacks()
+        setFeedback(feedbacks)
     }, [isInView])
-
-    const getFeedbacks = async () => {
-        const feedbacksCol = collection(db, "feedbacks")
-        const snapshot = await getDocs(feedbacksCol)
-        const feedbacks = snapshot.docs.map(doc => doc.data() as IFeedback)
-        setFeedbacks(feedbacks)
-
-        getFeedbacks()
-    }
 
   return (
     <div className="container mx-auto px-4 py-8">
