@@ -1,17 +1,15 @@
 import { IProduct } from "../product/Product.models";
-import {getAuth} from "firebase/auth";
-import {app} from "../../firebase";
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { AlertDialogOut } from "../nav/AlertDialogOut";
 import { NavLink } from "react-router-dom";
 import { SearchQuery } from "../nav/SearchQuery";
 import { Currency } from '../nav/Currency'
 import { NavLinks } from '../nav/NavLinks'
 import { Badge } from '@mui/material';
-import { CountContext } from '../nav/context/CountItemsInBucketContext';
+import { CountContext } from '../nav/context/CountItemsInBucket.context';
 import { useContext } from 'react';
 import { ModalContext } from "../bucket/context/Modal.context";
 import { ModalBucket } from "../bucket/ModalBucket";
+import { Dropdown } from "../nav/Dropdown";
+import { useState } from "react";
 
 interface Props {
     products: IProduct[],
@@ -20,15 +18,18 @@ interface Props {
 
 export function NavLayout( {products, children}: Props ) {
 
-    const auth = getAuth(app)
-    const [user] = useAuthState(auth)
-
     const {count} = useContext(CountContext)
     const {modal, setModal} = useContext(ModalContext)
 
-    const toggle = () => {
+    const [state, setState] = useState(false)
+
+    const toggleBucket = () => {
         setModal(!modal)
     }
+
+    const toggleDropdown = () => {
+        setState(!state)
+    } 
   
     return (
         <>
@@ -45,11 +46,9 @@ export function NavLayout( {products, children}: Props ) {
                         
                         <SearchQuery products={products} />
 
-                        {user &&  <AlertDialogOut /> }
-
                         <Badge badgeContent={count} color="primary">
                             <button
-                                onClick={toggle}
+                                onClick={toggleBucket}
                                 className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
                             >
                                 Bucket
@@ -57,7 +56,7 @@ export function NavLayout( {products, children}: Props ) {
                         </Badge>
                         {modal && <ModalBucket />}
 
-                        {user?.email === "andriychikulay@gmail.com" && <NavLink className="text-gray-900 font-bold text-lg ml-4" to="/admin">Admin</NavLink>}
+                        <Dropdown state={state} setState={toggleDropdown} />
                     </div>
                 </div>
             </nav>

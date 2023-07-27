@@ -1,4 +1,4 @@
-import {CurrencyContext} from "./context/CurrencyContext";
+import {CurrencyContext} from "./context/Currency.context";
 import {useContext} from "react";
 
 

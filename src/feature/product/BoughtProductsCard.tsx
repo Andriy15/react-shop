@@ -1,9 +1,9 @@
 import {IProduct} from "./Product.models";
-import {CurrencyContext} from "../nav/context/CurrencyContext";
+import {CurrencyContext} from "../nav/context/Currency.context";
 import React, {useContext, useState} from "react";
 import {useActions} from "../store/hooks/use-actions";
 import {TotalPriceContext} from "./context/TotalPriceContext";
-import {CountContext} from "../nav/context/CountItemsInBucketContext";
+import {CountContext} from "../nav/context/CountItemsInBucket.context";
 import invariant from "tiny-invariant";
 import {calculateValue} from "../utils/calculateValue";
 import { ToastContainer, toast } from "react-toastify";

@@ -1,14 +1,11 @@
 import { getAuth } from "firebase/auth";
 import { app } from "../../firebase";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { removeItemFromStorage } from "../utils/handleStorage";
 
 
 export function AlertDialogOut() {
     const auth = getAuth(app)
-    const [user] = useAuthState(auth)
-
 
     const handleLogout = () => {
       auth.signOut()
@@ -18,8 +15,7 @@ export function AlertDialogOut() {
     
 
     return (
-        <div className="flex items-center ml-4">
-          <span className="text-gray-700 mr-2">Email: {user?.email}</span>
+        <div className="flex items-center">
           <AlertDialog.Root>
             <AlertDialog.Trigger asChild>
               <button className="text-violet11 hover:bg-mauve3 shadow-blackA7 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] outline-none focus:shadow-[0_0_0_2px] focus:shadow-black">

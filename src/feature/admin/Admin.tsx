@@ -7,7 +7,7 @@ import Popup from "reactjs-popup";
 import { useInView } from "framer-motion";
 import { IProduct } from "../product/Product.models";
 import Product from "../product/Product";
-import { CurrencyContext } from "../nav/context/CurrencyContext";
+import { CurrencyContext } from "../nav/context/Currency.context";
 
 
 interface SubmitProps {

@@ -1,47 +1,52 @@
-import React, { useState } from "react";
-import { AlertDialogOut } from "./AlertDialogOut";
+import { getAuth } from '@firebase/auth'
+import { app } from '../../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { NavLink } from 'react-router-dom'
+import { AlertDialogOut } from './AlertDialogOut'
+import { useState } from 'react'
 
-export function Dropdown() {
-  const [dropdown, setDropdown] = useState(false);
+interface Props {
+  state: boolean
+  setState: (state: boolean) => void
+}
 
-  const handleClick = () => {
-    setDropdown(!dropdown);
-  };
+
+export function Dropdown( props: Props ) {
+
+  const auth = getAuth(app)
+  const [user] = useAuthState(auth)
+
+  const [state, setState] = useState(false)
+
+  const toggleDropdown = () => {
+    setState(!state)
+    props.setState(!state)
+  }
 
   return (
-    <div className="relative">
-      <button
-        className={`relative bg-gray-900 hover:bg-gray-800 text-white py-2 px-4 rounded ml-4 transition-colors duration-300 ${
-          dropdown ? "bg-blue-500" : ""
-        }`}
-        onClick={handleClick}
-      >
-        Profile
-        <span
-          className={`absolute right-3 top-1/2 transform transition-transform duration-300 ${
-            dropdown ? "rotate-180" : "rotate-0"
-          }`}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-4 w-4"
+      <div
+       className="relative inline-block text-center ml-4"
+       onMouseEnter={toggleDropdown}
+       onMouseLeave={toggleDropdown}>
+        <div>
+          <button
+            className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
           >
-            <path d="M5 10l7 7 7-7" />
-          </svg>
-        </span>
-      </button>
-      {dropdown && (
-        <div className="absolute right-0 mt-3 w-40 bg-white rounded-lg shadow-lg z-10">
-          <AlertDialogOut />
+            {user?.email}
+          </button>
         </div>
-      )}
-    </div>
-  );
+
+        { props.state && 
+          <div
+            className="origin-top-right absolute right-0 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+          >
+            <div className="py-1 text-center">
+              {user?.email === "andriychikulay@gmail.com" && <NavLink className="text-gray-900 font-bold text-lg" to="/admin">Admin</NavLink>}
+              {user &&  <AlertDialogOut /> }
+            </div>
+          </div>
+        }
+      </div>
+  )
 }
 

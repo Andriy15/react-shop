@@ -1,6 +1,6 @@
 import {IProduct} from "../product/Product.models";
 import React, {useContext, useState} from "react";
-import {CurrencyContext} from "../nav/context/CurrencyContext";
+import {CurrencyContext} from "../nav/context/Currency.context";
 import 'reactjs-popup/dist/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import {ButtonsProduct} from "../../shared/ButtonsProduct";

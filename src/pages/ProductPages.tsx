@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 import {Loader} from "../shared/Loader";
 import {Error} from "../shared/error/Error";
 import Product from "../feature/product/Product";
-import {CurrencyContext} from "../feature/nav/context/CurrencyContext";
+import {CurrencyContext} from "../feature/nav/context/Currency.context";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion, useScroll } from "framer-motion"

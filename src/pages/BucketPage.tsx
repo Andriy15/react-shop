@@ -2,7 +2,7 @@ import { useAppSelector } from "../feature/store/hooks/redux";
 import { Link } from "react-router-dom";
 import BoughtProducts from "../feature/product/BoughtProductsCard";
 import {useContext, useState} from "react";
-import { CurrencyContext } from "../feature/nav/context/CurrencyContext";
+import { CurrencyContext } from "../feature/nav/context/Currency.context";
 import { IProduct } from "../feature/product/Product.models";
 import { TotalPriceContext } from "../feature/product/context/TotalPriceContext";
 import { calculateValue } from "../feature/utils/calculateValue";
