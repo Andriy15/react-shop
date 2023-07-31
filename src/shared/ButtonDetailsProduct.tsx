@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 
 interface DetailsProductProps {
-  showDetails: string;
-  hideDetails: string;
+  showDetails: any;
+  hideDetails: any;
   onDetails: (details: boolean) => void
 }
 

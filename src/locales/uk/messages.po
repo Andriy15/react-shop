@@ -1,0 +1,40 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language: \n"
+"Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: src/feature/layout/NavLayout.tsx:61
+msgid "Bucket"
+msgstr "Кошик"
+
+#: src/feature/product/Product.tsx:41
+msgid "Buy Product"
+msgstr "Купити продукт"
+
+#: src/feature/nav/NavLinks.tsx:12
+msgid "Feedbacks"
+msgstr "Відгуки"
+
+#: src/feature/product/Product.tsx:39
+msgid "Hide Details"
+msgstr "Сховати деталі"
+
+#: src/feature/nav/NavLinks.tsx:8
+msgid "Products"
+msgstr "Продукти"
+
+#: src/feature/product/Product.tsx:41
+msgid "Remove Product"
+msgstr "Видалити продукт"
+
+#: src/feature/product/Product.tsx:39
+msgid "Show Details"
+msgstr "Показати деталі"

@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ButtonsProduct} from "../../shared/ButtonsProduct";
 import {calculateValue} from "../utils/calculateValue";
 import {ButtonDetailsProduct} from "../../shared/ButtonDetailsProduct";
+import { Trans } from "@lingui/macro";
 
 interface ProductProps {
   product: IProduct
@@ -35,9 +36,9 @@ function Product({ product }: ProductProps) {
 
        <div className='flex'>
 
-         <ButtonDetailsProduct onDetails={toggleDetails}  hideDetails='Hide Details' showDetails='Show Details' />
+         <ButtonDetailsProduct onDetails={toggleDetails}  hideDetails={<Trans>Hide Details</Trans>} showDetails={<Trans>Show Details</Trans>} />
 
-         <ButtonsProduct product={product} buyButton='Buy Product' removeButton='Remove Product' />
+         <ButtonsProduct product={product} buyButton={<Trans>Buy Product</Trans>} removeButton={<Trans>Remove Product</Trans>} />
 
        </div>
 

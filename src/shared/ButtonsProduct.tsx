@@ -10,8 +10,8 @@ import {Tooltip} from "@mui/material";
 
 interface ProductProps {
   product: IProduct,
-  buyButton: string,
-  removeButton: string
+  buyButton: any,
+  removeButton: any
 }
 
 export function ButtonsProduct({ product, removeButton, buyButton }: ProductProps) {

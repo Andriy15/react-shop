@@ -33,7 +33,7 @@ export function ModalBucket() {
     }
 
     return (
-        <div className="absolute right-0 top-20 mx-auto">
+        <div className="absolute right-0 top-20">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col">
             <div className="mt-4">
               {data.map((product) => (

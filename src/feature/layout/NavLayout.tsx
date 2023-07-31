@@ -10,6 +10,8 @@ import { ModalContext } from "../bucket/context/Modal.context";
 import { ModalBucket } from "../bucket/ModalBucket";
 import { Dropdown } from "../nav/Dropdown";
 import { useState } from "react";
+import { Languages } from "../nav/Languages";
+import { Trans } from "@lingui/macro";
 
 interface Props {
     products: IProduct[],
@@ -22,6 +24,7 @@ export function NavLayout( {products, children}: Props ) {
     const {modal, setModal} = useContext(ModalContext)
 
     const [state, setState] = useState(false)
+    const [languageModal, setLanguageModal] = useState(false)
 
     const toggleBucket = () => {
         setModal(!modal)
@@ -30,6 +33,10 @@ export function NavLayout( {products, children}: Props ) {
     const toggleDropdown = () => {
         setState(!state)
     } 
+
+    const toggleLanguages = () => {
+        setLanguageModal(!languageModal)
+    }
   
     return (
         <>
@@ -49,14 +56,16 @@ export function NavLayout( {products, children}: Props ) {
                         <Badge badgeContent={count} color="primary">
                             <button
                                 onClick={toggleBucket}
-                                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                                className="bg-blue-500 text-white py-2 px-4 ml-4 rounded hover:bg-blue-600"
                             >
-                                Bucket
+                                <Trans>Bucket</Trans>
                             </button>
                         </Badge>
                         {modal && <ModalBucket />}
 
                         <Dropdown state={state} setState={toggleDropdown} />
+
+                        <Languages toggleModal={toggleLanguages} modal={languageModal} />
                     </div>
                 </div>
             </nav>
