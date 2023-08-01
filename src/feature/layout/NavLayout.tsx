@@ -24,7 +24,6 @@ export function NavLayout( {products, children}: Props ) {
     const {modal, setModal} = useContext(ModalContext)
 
     const [state, setState] = useState(false)
-    const [languageModal, setLanguageModal] = useState(false)
 
     const toggleBucket = () => {
         setModal(!modal)
@@ -33,10 +32,6 @@ export function NavLayout( {products, children}: Props ) {
     const toggleDropdown = () => {
         setState(!state)
     } 
-
-    const toggleLanguages = () => {
-        setLanguageModal(!languageModal)
-    }
   
     return (
         <>
@@ -65,7 +60,7 @@ export function NavLayout( {products, children}: Props ) {
 
                         <Dropdown state={state} setState={toggleDropdown} />
 
-                        <Languages toggleModal={toggleLanguages} modal={languageModal} />
+                        <Languages />
                     </div>
                 </div>
             </nav>

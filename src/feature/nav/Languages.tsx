@@ -1,13 +1,8 @@
 import React, { useState } from "react"
 import { useLingui } from "@lingui/react";
 
-interface Props {
-    modal: boolean
-    toggleModal: () => void
-}
 
-
-export function Languages(props: Props) {
+export function Languages() {
     const { i18n } = useLingui()
     const [isModal, setIsModal] = useState(false)
     
