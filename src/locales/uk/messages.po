@@ -11,6 +11,10 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
+#: src/feature/feedback/Feedback.tsx:15
+msgid "All Feedbacks from customers"
+msgstr "Всі відгуки від покупців"
+
 #: src/feature/layout/NavLayout.tsx:61
 msgid "Bucket"
 msgstr "Кошик"
@@ -18,6 +22,10 @@ msgstr "Кошик"
 #: src/feature/product/Product.tsx:41
 msgid "Buy Product"
 msgstr "Купити продукт"
+
+#: src/feature/feedback/Feedback.tsx:11
+msgid "Feedback"
+msgstr "Відгук"
 
 #: src/feature/nav/NavLinks.tsx:12
 msgid "Feedbacks"
@@ -38,3 +46,7 @@ msgstr "Видалити продукт"
 #: src/feature/product/Product.tsx:39
 msgid "Show Details"
 msgstr "Показати деталі"
+
+#: src/feature/feedback/Feedback.form.tsx:47
+msgid "Submit Feedback"
+msgstr "Відправити відгук"

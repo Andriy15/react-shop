@@ -1,31 +1,18 @@
 import FeedbackForm from './Feedback.form';
-import { db } from '../../firebase';
-import { collection, getDocs } from '@firebase/firestore';
-import { IFeedback } from '../feedback/Feedback.models';
-import { useState, useEffect, useRef } from 'react';
-import { useInView } from 'framer-motion';
 import { useFeedbacks } from './hooks/feedback.hook';
+import { Trans } from '@lingui/macro';
 
 function Feedback() {
 
     const { feedbacks } = useFeedbacks()
 
-    const [feedback, setFeedback] = useState<IFeedback[]>([])
-
-    const ref = useRef(null)
-    const isInView = useInView(ref)
-
-    useEffect(() => {
-        setFeedback(feedbacks)
-    }, [isInView])
-
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-semibold mb-8">Feedback</h1>
+      <h1 className="text-3xl font-semibold mb-8"><Trans>Feedback</Trans></h1>
       <FeedbackForm />
       <div className="mt-8 container">
         <div className="flex items-center mb-4">
-          <span className="text-lg font-semibold text-gray-800">All Feedbacks from customers</span>
+          <span className="text-lg font-semibold text-gray-800"><Trans>All Feedbacks from customers</Trans></span>
         </div>
         {feedbacks.map((feedback) => (
           <div className="bg-white rounded-lg shadow-lg p-6 mb-4 overflow-auto">

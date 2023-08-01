@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from '@firebase/auth';
 import {app} from '../../firebase';
 import invariant from 'tiny-invariant';
+import { Trans } from '@lingui/macro';
 
 function FeedbackForm() {
   const [feedbackText, setFeedbackText] = useState('')
@@ -43,7 +44,7 @@ function FeedbackForm() {
         type="submit"
         className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
       >
-        Submit Feedback
+        <Trans>Submit Feedback</Trans>
       </button>
     </form>
   );

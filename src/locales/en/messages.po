@@ -11,12 +11,20 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
+#: src/feature/feedback/Feedback.tsx:15
+msgid "All Feedbacks from customers"
+msgstr ""
+
 #: src/feature/layout/NavLayout.tsx:61
 msgid "Bucket"
 msgstr ""
 
 #: src/feature/product/Product.tsx:41
 msgid "Buy Product"
+msgstr ""
+
+#: src/feature/feedback/Feedback.tsx:11
+msgid "Feedback"
 msgstr ""
 
 #: src/feature/nav/NavLinks.tsx:12
@@ -37,4 +45,8 @@ msgstr ""
 
 #: src/feature/product/Product.tsx:39
 msgid "Show Details"
+msgstr ""
+
+#: src/feature/feedback/Feedback.form.tsx:47
+msgid "Submit Feedback"
 msgstr ""
