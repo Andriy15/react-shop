@@ -10,7 +10,6 @@ export function AlertDialogOut() {
     const handleLogout = () => {
       auth.signOut()
       removeItemFromStorage("user")
-      window.location.reload()
     }
     
 

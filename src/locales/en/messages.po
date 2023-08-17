@@ -15,7 +15,7 @@ msgstr ""
 msgid "All Feedbacks from customers"
 msgstr ""
 
-#: src/feature/layout/NavLayout.tsx:61
+#: src/feature/layout/NavLayout.tsx:72
 msgid "Bucket"
 msgstr ""
 
@@ -33,6 +33,10 @@ msgstr ""
 
 #: src/feature/product/Product.tsx:39
 msgid "Hide Details"
+msgstr ""
+
+#: src/feature/layout/NavLayout.tsx:53
+msgid "Login"
 msgstr ""
 
 #: src/feature/nav/NavLinks.tsx:8

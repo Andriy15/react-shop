@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setItemToStorage } from '../utils/handleStorage';
 import { TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 
 interface SignUpProps {
@@ -23,12 +24,15 @@ export function SignUpForm(props: SignUpProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<SignUnFormData>()
   const auth = getAuth(app)
 
+  const navigate = useNavigate()
+
 
   const onSubmit = async (data: SignUnFormData) => {
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password)
       setItemToStorage('user', data.email)
       props.onSubmit()
+      navigate('/')
     } catch (error: unknown) {
       const firebaseError = error as FirebaseError
       toast.error(firebaseError.code, {

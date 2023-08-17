@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { setItemToStorage } from '../utils/handleStorage'
 import { TextField } from '@mui/material';
 import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 interface SignInFormData {
@@ -22,7 +23,8 @@ interface SignInFormProps {
 export function SignInForm(props: SignInFormProps) {
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>()
   const auth = getAuth(app)
-  
+
+  const navigate = useNavigate()
 
   const onSubmit = async (data: SignInFormData) => {
     try {
@@ -30,6 +32,7 @@ export function SignInForm(props: SignInFormProps) {
       const user = result.user
       setItemToStorage('user', user.email)
       props.onSubmit()
+      navigate('/')
     } 
     catch (error: unknown) {
       const firebaseError = error as FirebaseError
@@ -53,6 +56,7 @@ export function SignInForm(props: SignInFormProps) {
       const user = result.user
       setItemToStorage('user', user.email)
       props.onSubmit()
+      navigate('/')
     }
     catch (error: unknown) {
       const firebaseError = error as FirebaseError

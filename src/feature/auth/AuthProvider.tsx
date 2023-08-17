@@ -4,17 +4,13 @@ import { SignUpForm } from './SignUp.form'
 import { Loader } from '../../shared/Loader'
 import { useProducts } from '../product/hooks/products.hooks'
 
-interface AdminLayoutProps {
-  submit: () => void
-}
 
-
-export function AuthProvider(props: AdminLayoutProps) {
+export function AuthProvider() {
   const [isSignUp, setIsSignUp] = useState(false)
   const { loading } = useProducts()
 
   const handleFormSubmit = () => {
-    props.submit()
+    setIsSignUp(true)
   }
 
   const toggleSignUp = () => {
