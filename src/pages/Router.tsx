@@ -10,7 +10,7 @@ import AdminRoute from '../feature/admin/Admin'
 import { getAuth } from 'firebase/auth'
 import { app } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useProducts } from '../feature/product/hooks/products.hooks'
+import { useProducts } from '../feature/product/service/products.service'
 import Feedback from '../feature/feedback/Feedback'
 import { Creator } from '../feature/creator/Creator'
 

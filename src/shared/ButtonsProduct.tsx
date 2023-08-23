@@ -3,7 +3,7 @@ import React, {useContext, useState} from "react";
 import {IProduct} from "../feature/product/Product.models";
 import {useAppSelector} from "../feature/store/hooks/redux";
 import {toast, ToastContainer} from "react-toastify";
-import {TotalPriceContext} from "../feature/product/context/TotalPriceContext";
+import {TotalPriceContext} from "../feature/bucket/context/TotalPriceContext";
 import {useActions} from "../feature/store/hooks/use-actions";
 import {CountContext} from "../feature/nav/context/CountItemsInBucket.context";
 import {Tooltip} from "@mui/material";

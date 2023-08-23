@@ -23,6 +23,14 @@ msgstr "Кошик"
 msgid "Buy Product"
 msgstr "Купити продукт"
 
+#: src/feature/auth/sign-in/SignIn.constants.ts:6
+msgid "Create account"
+msgstr "Створити аккаунт"
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:18
+msgid "Email"
+msgstr "Електронна пошта"
+
 #: src/feature/feedback/Feedback.tsx:11
 msgid "Feedback"
 msgstr "Відгук"
@@ -35,9 +43,21 @@ msgstr "Відгуки"
 msgid "Hide Details"
 msgstr "Сховати деталі"
 
+#: src/feature/auth/sign-in/SignIn.constants.ts:9
+msgid "Invalid email"
+msgstr "Невірна електронна пошта"
+
 #: src/feature/layout/NavLayout.tsx:53
 msgid "Login"
 msgstr "Увійти"
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:8
+msgid "Min length is 8 symbols"
+msgstr "Мінімальна довжина 8 символів"
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:19
+msgid "Password"
+msgstr "Пароль"
 
 #: src/feature/nav/NavLinks.tsx:8
 msgid "Products"
@@ -51,6 +71,18 @@ msgstr "Видалити продукт"
 msgid "Show Details"
 msgstr "Показати деталі"
 
+#: src/feature/auth/sign-in/SignIn.constants.ts:4
+msgid "Sign In"
+msgstr "Увійти"
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:5
+msgid "Sign in with Google"
+msgstr "Увійти через Google"
+
 #: src/feature/feedback/Feedback.form.tsx:47
 msgid "Submit Feedback"
 msgstr "Відправити відгук"
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:7
+msgid "This field is required"
+msgstr "Це поле обов'язкове"

@@ -1,19 +1,24 @@
 import { render } from '@testing-library/react'
-import { SignInForm } from './SignIn.form'
+import { SignInForm } from './sign-in/SignIn.form'
 import AdminRoute from '../admin/Admin'
 
 
-test("Crushing SignInForm" , () => {
-  const { getByText } = render(<SignInForm onSubmit={function (): void {
-    throw new Error('Function not implemented.')
-  } } onToggleSignUp={function (): void {
-    throw new Error('Function not implemented.')
-  } }  />)
-})
+describe('SignInForm', () => {
+  it('should render successfully', () => {
+    const { baseElement } = render(<SignInForm onSubmit={() => {}} onToggleSignUp={() => {}} />)
+    expect(baseElement).toBeTruthy()
+  })
+}
+)
+
+describe('AdminRoute', () => {
+  it('should render successfully', () => {
+    const { baseElement } = render(<AdminRoute onSubmit={function (): void {
+      throw new Error('Function not implemented.')
+    } } />)
+    expect(baseElement).toBeTruthy()
+  })
+}
+)
 
 
-test("Crushing Admin" , () => {
-  const { getByText } = render(<AdminRoute onSubmit={function (): void {
-    throw new Error('Function not implemented.')
-  } } />)
-})

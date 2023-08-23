@@ -23,6 +23,14 @@ msgstr ""
 msgid "Buy Product"
 msgstr ""
 
+#: src/feature/auth/sign-in/SignIn.constants.ts:6
+msgid "Create account"
+msgstr ""
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:18
+msgid "Email"
+msgstr ""
+
 #: src/feature/feedback/Feedback.tsx:11
 msgid "Feedback"
 msgstr ""
@@ -35,8 +43,20 @@ msgstr ""
 msgid "Hide Details"
 msgstr ""
 
+#: src/feature/auth/sign-in/SignIn.constants.ts:9
+msgid "Invalid email"
+msgstr ""
+
 #: src/feature/layout/NavLayout.tsx:53
 msgid "Login"
+msgstr ""
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:8
+msgid "Min length is 8 symbols"
+msgstr ""
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:19
+msgid "Password"
 msgstr ""
 
 #: src/feature/nav/NavLinks.tsx:8
@@ -51,6 +71,18 @@ msgstr ""
 msgid "Show Details"
 msgstr ""
 
+#: src/feature/auth/sign-in/SignIn.constants.ts:4
+msgid "Sign In"
+msgstr ""
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:5
+msgid "Sign in with Google"
+msgstr ""
+
 #: src/feature/feedback/Feedback.form.tsx:47
 msgid "Submit Feedback"
+msgstr ""
+
+#: src/feature/auth/sign-in/SignIn.constants.ts:7
+msgid "This field is required"
 msgstr ""

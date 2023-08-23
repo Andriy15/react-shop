@@ -2,7 +2,7 @@ import { IProduct } from '../product/Product.models';
 import { ModalBucketCard } from './ModalBucketCard';
 import { useAppSelector } from '../store/hooks/redux';
 import { useContext } from 'react';
-import { TotalPriceContext } from '../product/context/TotalPriceContext';
+import { TotalPriceContext } from './context/TotalPriceContext';
 import { NavLink } from 'react-router-dom';
 import { ModalContext } from './context/Modal.context';
 

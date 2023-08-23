@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { SignInForm } from './SignIn.form'
-import { SignUpForm } from './SignUp.form'
+import { SignInForm } from './sign-in/SignIn.form'
+import { SignUpForm } from './sign-up/SignUp.form'
 import { Loader } from '../../shared/Loader'
-import { useProducts } from '../product/hooks/products.hooks'
+import { useProducts } from '../product/service/products.service'
 
 
 export function AuthProvider() {

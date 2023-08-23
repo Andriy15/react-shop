@@ -1,12 +1,12 @@
 import { useAppSelector } from "../feature/store/hooks/redux";
 import { Link } from "react-router-dom";
-import BoughtProducts from "../feature/product/BoughtProductsCard";
+import BoughtProducts from "../feature/bucket/BucketCard";
 import {useContext, useState} from "react";
 import { CurrencyContext } from "../feature/nav/context/Currency.context";
 import { IProduct } from "../feature/product/Product.models";
-import { TotalPriceContext } from "../feature/product/context/TotalPriceContext";
 import { calculateValue } from "../feature/utils/calculateValue";
 import { Payment } from "../feature/bucket/Payment";
+import { useTotalPrice } from "../feature/bucket/context/TotalPriceContext";
 
 interface ProductProps extends IProduct {
   currency: string;
@@ -17,7 +17,7 @@ export function BucketPage() {
   const data = useAppSelector((state) => state.bucket.data)
 
   const { currency } = useContext(CurrencyContext);
-  const { totalPrice } = useContext(TotalPriceContext)
+  const { totalPrice } = useTotalPrice()
   const totalPriceNumber = parseFloat(totalPrice.toFixed(2))
 
   if (data.length === 0)

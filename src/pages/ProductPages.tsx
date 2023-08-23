@@ -1,4 +1,4 @@
-import {useProducts} from "../feature/product/hooks/products.hooks";
+import {useProducts} from "../feature/product/service/products.service";
 import React, {useContext} from "react";
 import {Loader} from "../shared/Loader";
 import {Error} from "../shared/error/Error";
@@ -7,20 +7,22 @@ import {CurrencyContext} from "../feature/nav/context/Currency.context";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion, useScroll } from "framer-motion"
-import { HoverCardDemo } from "../shared/HoverCardDemo";
 import { getAuth } from '@firebase/auth'
 import { app } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-
+import {Footer} from "../shared/Footer";
+import { texts } from "../feature/auth/sign-in/SignIn.constants";
+import { Trans } from "@lingui/react";
+import { useLingui } from "@lingui/react";
 
 function ProductPages() {
+   const {i18n} = useLingui();
   const {currency} = useContext(CurrencyContext)
 
   const auth = getAuth(app)
   const [user] = useAuthState(auth)
 
   const { scrollYProgress } = useScroll()
-
   const {loading, error, products} = useProducts()
 
   return (
@@ -44,6 +46,7 @@ function ProductPages() {
                draggable: true,
                progress: undefined,
                })}
+
             {products.map(product => <Product product={product} currency={currency} key={product.id} />)}
    
             <motion.div
@@ -55,15 +58,7 @@ function ProductPages() {
    
          </div>
    
-   
-         <footer className='container mx-auto max-w-2xl pt-5 mb-5'>
-            <div className='flex justify-center'>
-               <p className='text-gray-500 text-sm'>© 2023 All rights reserved.</p>
-            </div>
-            <div className='flex justify-center'>
-               <p className='text-gray-500 text-sm'>Made with ❤️ by <HoverCardDemo /></p>
-            </div>
-         </footer>
+         <Footer />
         </>
       ) }
    </>

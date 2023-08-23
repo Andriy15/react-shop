@@ -9,7 +9,7 @@ import { useContext, useState } from 'react';
 import { ModalContext } from "../bucket/context/Modal.context";
 import { ModalBucket } from "../bucket/ModalBucket";
 import { Dropdown } from "../nav/Dropdown";
-import { Languages } from "../nav/Languages";
+import { Languages } from "../../shared/Languages";
 import { Trans } from "@lingui/macro";
 import { getAuth } from '@firebase/auth'
 import { app } from '../../firebase'
