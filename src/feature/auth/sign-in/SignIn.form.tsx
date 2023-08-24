@@ -9,10 +9,10 @@ import { TextField } from '@mui/material';
 import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { FORM_ERRORS, Fields, texts } from './SignIn.constants'
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SignInSchema } from './SignIn.schema'
-import { FORM_LABELS } from './SignIn.constants';
+import { FORM_LABELS } from './SignIn.constants'
 
 interface SignInFormData {
   email: string

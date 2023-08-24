@@ -29,7 +29,7 @@ function BoughtProductsCard({ product }: BoughtItemProps) {
       id: product.id,
       title: product.title,
       image: product.image,
-      price: product.price.toString(),
+      price: product.price,
       category: product.category,
     }
     removeBucket(data)
@@ -42,16 +42,16 @@ function BoughtProductsCard({ product }: BoughtItemProps) {
     event.preventDefault()
     invariant(quantity < 10, 'Quantity must be 10 or less')
     setQuantity(quantity + 1)
-    const newPrice = product.price * (quantity + 1)
-    addPrice(newPrice)
+    addPrice(product.price)
   }
+
+  console.log(typeof product.price)
 
   const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     invariant(quantity > 1, 'Quantity must be 1 or more')
     setQuantity(quantity - 1)                                                                         
-    const newPrice = product.price * (quantity - 1)
-    removePrice(newPrice)
+    removePrice(product.price)
   }
 
   return (

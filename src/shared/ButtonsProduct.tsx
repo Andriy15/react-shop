@@ -42,7 +42,7 @@ export function ButtonsProduct({ product, removeButton, buyButton }: ProductProp
       id: product.id,
       title: product.title,
       image: product.image,
-      price: product.price.toString(),
+      price: product.price,
       category: product.category
     }
     addToBucket(data)
@@ -56,7 +56,7 @@ export function ButtonsProduct({ product, removeButton, buyButton }: ProductProp
       id: product.id,
       title: product.title,
       image: product.image,
-      price: product.price.toString(),
+      price: product.price,
       category: product.category,
     }
     removeBucket(data)

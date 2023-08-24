@@ -42,8 +42,8 @@ export function Footer() {
                             <HoverCardDemo /> Chykulai
                         </motion.div>
                         <motion.div className='flex flex-col items-center space-y-2 text-lg text-gray-600' initial="hidden" animate="visible" variants={variants}>
-                            <span>Connect with me on <a className='text-blue-500 hover:underline' href={Links.Linkedin} target='_blank'>LinkedIn</a></span>
-                            <span>Check out my work on <a className='text-blue-500 hover:underline' href={Links.Github} target='_blank'>GitHub</a></span>
+                            <span>Connect with me on <a className='text-blue-500 hover:underline' href={Links.Linkedin} target='_blank' rel="noreferrer" >LinkedIn</a></span>
+                            <span>Check out my work on <a className='text-blue-500 hover:underline' href={Links.Github} target='_blank' rel="noreferrer" >GitHub</a></span>
                             <span>Reach out to me via <a className='text-blue-500 hover:underline' href='mailto:andriychikulay@gmail.com'>Email</a></span>
                         </motion.div>
                     </div>

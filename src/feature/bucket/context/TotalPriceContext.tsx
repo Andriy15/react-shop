@@ -17,6 +17,7 @@ export const TotalPriceContext = createContext<ITotalPriceContext>({
 // Fix total price adding with quantity 
 export const TotalPriceState = ({ children }: { children: React.ReactNode }) => {
   const [totalPrice, setTotalPrice] = useState(readItemFromStorage('totalPrice') || 0)
+  
 
   const addPrice = (price: number) => {
     const newPrice = totalPrice + price

@@ -14,12 +14,12 @@ export const bucketSlice = createSlice({
   name: 'bucket',
   initialState,
   reducers: {
-    addToBucket(state, action: PayloadAction<{ id: any, title: string, image: string, price: string, category: string }>) {
+    addToBucket(state, action: PayloadAction<{ id: any, title: string, image: string, price: number, category: string }>) {
       state.data.push(action.payload) 
       localStorage.setItem(LS_REACT_KEY, JSON.stringify(state.data))
     },
 
-    removeBucket(state, action: PayloadAction<{ id: any, title: string, image: string, price: string, category: string}>) {
+    removeBucket(state, action: PayloadAction<{ id: any, title: string, image: string, price: number, category: string}>) {
       state.data = state.data.filter(p => p.id !== action.payload.id)
       localStorage.setItem(LS_REACT_KEY, JSON.stringify(state.data))
     }
