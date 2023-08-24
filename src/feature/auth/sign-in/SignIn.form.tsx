@@ -8,7 +8,7 @@ import { setItemToStorage } from '../../utils/handleStorage'
 import { TextField } from '@mui/material';
 import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { Fields, texts } from './SignIn.constants'
+import { FORM_ERRORS, Fields, texts } from './SignIn.constants'
 import { useLingui } from '@lingui/react';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SignInSchema } from './SignIn.schema'
@@ -97,7 +97,13 @@ export function SignInForm(props: SignInFormProps) {
           label={i18n._(FORM_LABELS[Fields.email])}
           className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
         />
-        {errors.email && (<span className="text-red-600">{errors.email.message}</span>)}
+        {errors.email && (
+          <span className="text-red-600">
+            {errors.email.type === "required"
+              ? i18n._(FORM_ERRORS[Fields.email].required)
+              : i18n._(FORM_ERRORS[Fields.email].pattern)}
+          </span>
+        )}
       </div>
       <div className="mb-4">
         <TextField
@@ -108,7 +114,13 @@ export function SignInForm(props: SignInFormProps) {
           label={i18n._(FORM_LABELS[Fields.password])}
           className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
         />
-        {errors.password && (<span className="text-red-600">{errors.password.message}</span>)}
+        {errors.password && (
+          <span className="text-red-600">
+            {errors.password.type === "required"
+              ? i18n._(FORM_ERRORS[Fields.password].required)
+              : i18n._(FORM_ERRORS[Fields.password].minLength)}
+          </span>
+        )}
       </div>
       <div className="flex justify-between ">
         <button

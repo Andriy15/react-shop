@@ -11,12 +11,8 @@ import { getAuth } from '@firebase/auth'
 import { app } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import {Footer} from "../shared/Footer";
-import { texts } from "../feature/auth/sign-in/SignIn.constants";
-import { Trans } from "@lingui/react";
-import { useLingui } from "@lingui/react";
 
 function ProductPages() {
-   const {i18n} = useLingui();
   const {currency} = useContext(CurrencyContext)
 
   const auth = getAuth(app)

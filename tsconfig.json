@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "lingui.config.js", "src/locale"  ]
+, "lingui.config.js", "src/locale", "yup.config.ts"  ]
 }

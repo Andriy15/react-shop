@@ -2,14 +2,17 @@ import { getAuth } from "firebase/auth";
 import { app } from "../../firebase";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { removeItemFromStorage } from "../utils/handleStorage";
+import { useNavigate } from "react-router-dom";
 
 
 export function AlertDialogOut() {
     const auth = getAuth(app)
+    const navigate = useNavigate()
 
     const handleLogout = () => {
       auth.signOut()
       removeItemFromStorage("user")
+      navigate('/')
     }
     
 
