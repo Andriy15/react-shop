@@ -15,6 +15,10 @@ msgstr ""
 msgid "All Feedbacks from customers"
 msgstr ""
 
+#: src/feature/auth/sign-up/SignUp.constants.ts:5
+msgid "Already have an account ?"
+msgstr ""
+
 #: src/feature/layout/NavLayout.tsx:72
 msgid "Bucket"
 msgstr ""
@@ -85,6 +89,10 @@ msgstr ""
 
 #: src/feature/auth/sign-in/SignIn.constants.ts:6
 msgid "Sign in with Google"
+msgstr ""
+
+#: src/feature/auth/sign-up/SignUp.constants.ts:4
+msgid "Sign Up"
 msgstr ""
 
 #: src/feature/feedback/Feedback.form.tsx:47

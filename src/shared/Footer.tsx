@@ -13,13 +13,13 @@ export function Footer() {
         if (isInView) {
             setTimeout(() => {
                 setShowContent(true)
-            }, 500)
+            }, 700)
         }
     }, [isInView])
 
     useEffect(() => {
         if (showContent) {
-            animate.start('visible');
+            animate.start('visible')
         }
     }, [showContent])
 

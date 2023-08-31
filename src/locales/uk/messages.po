@@ -15,6 +15,10 @@ msgstr ""
 msgid "All Feedbacks from customers"
 msgstr "Всі відгуки від покупців"
 
+#: src/feature/auth/sign-up/SignUp.constants.ts:5
+msgid "Already have an account ?"
+msgstr "Вже маєте аккаунт ?"
+
 #: src/feature/layout/NavLayout.tsx:72
 msgid "Bucket"
 msgstr "Кошик"
@@ -86,6 +90,10 @@ msgstr "Увійти"
 #: src/feature/auth/sign-in/SignIn.constants.ts:6
 msgid "Sign in with Google"
 msgstr "Увійти через Google"
+
+#: src/feature/auth/sign-up/SignUp.constants.ts:4
+msgid "Sign Up"
+msgstr "Зареєструватись"
 
 #: src/feature/feedback/Feedback.form.tsx:47
 msgid "Submit Feedback"

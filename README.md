@@ -19,9 +19,11 @@ To start the application, run:
 
 This will start the development server and open the application in your default browser. You should see a home page with a list of products.
 
-You can navigate to other pages in the application using the navigation menu at the top of the page. The shopping cart is accessible from any page and will show a list of items that have been added to the cart.
+or 
 
-To purchase items, navigate to the checkout page and fill out the form with your shipping and payment information. You can also apply any discount codes that you may have.
+Just visit a live demo of the application at https://react-ts-theta.vercel.app/
+
+You can navigate to other pages in the application using the navigation menu at the top of the page. The shopping cart is accessible from any page and will show a list of items that have been added to the cart. You can also remove items from the cart or clear the cart entirely. The checkout process is not yet implemented, but you can click the Checkout button to see a message indicating that the your purchase has been completed. You can also change the language of the application using the language selector in the navigation menu. Currently, only English and Ukraine are supported.
 
 # Contributing
 If you would like to contribute to React Shop, please fork the repository and submit a pull request with your changes. I welcome contributions of all kinds, including bug fixes, new features, and improvements to documentation.

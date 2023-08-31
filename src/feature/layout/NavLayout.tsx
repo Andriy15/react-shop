@@ -62,7 +62,7 @@ export function NavLayout( {products, children}: Props ) {
                                 <NavLinks /> 
                                 
                                 <Currency /> 
-                                
+
                                 <div className="flex items-center">
                                     <Badge badgeContent={count} color="primary">
                                         <button

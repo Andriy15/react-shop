@@ -8,11 +8,11 @@ import { setItemToStorage } from '../../utils/handleStorage'
 import { TextField } from '@mui/material';
 import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { FORM_ERRORS, Fields, texts } from './SignIn.constants'
+import { Fields, texts, FORM_LABELS, FORM_ERRORS } from './SignIn.constants'
 import { useLingui } from '@lingui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SignInSchema } from './SignIn.schema'
-import { FORM_LABELS } from './SignIn.constants'
+import { initialValues } from './SignIn.constants'
 
 interface SignInFormData {
   email: string
@@ -80,6 +80,19 @@ export function SignInForm(props: SignInFormProps) {
   }
 }
 
+const getErrorMessage = (field: Fields) => {
+  switch (field) {
+    case Fields.email:
+      return i18n._(errors.email?.message || '');
+
+    case Fields.password:
+      return i18n._(errors.password?.message || '');
+
+    default:
+      return ''
+  }
+}
+
 
   return (
     <form
@@ -90,6 +103,7 @@ export function SignInForm(props: SignInFormProps) {
       <hr className="mb-6" />
       <div className="mb-4">
         <TextField
+          defaultValue={initialValues[Fields.email]}
           id="email"
           type="email"
           {...register("email")}
@@ -99,14 +113,13 @@ export function SignInForm(props: SignInFormProps) {
         />
         {errors.email && (
           <span className="text-red-600">
-            {errors.email.type === "required"
-              ? i18n._(FORM_ERRORS[Fields.email].required)
-              : i18n._(FORM_ERRORS[Fields.email].pattern)}
+            {getErrorMessage(Fields.email)} 
           </span>
         )}
       </div>
       <div className="mb-4">
         <TextField
+          defaultValue={initialValues[Fields.password]}
           id="password"
           type="password"
           {...register("password")}
@@ -116,9 +129,7 @@ export function SignInForm(props: SignInFormProps) {
         />
         {errors.password && (
           <span className="text-red-600">
-            {errors.password.type === "required"
-              ? i18n._(FORM_ERRORS[Fields.password].required)
-              : i18n._(FORM_ERRORS[Fields.password].minLength)}
+            {getErrorMessage(Fields.password)} 
           </span>
         )}
       </div>

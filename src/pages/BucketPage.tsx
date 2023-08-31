@@ -16,7 +16,7 @@ export function BucketPage() {
 
   const data = useAppSelector((state) => state.bucket.data)
 
-  const { currency } = useContext(CurrencyContext);
+  const { currency } = useContext(CurrencyContext)
   const { totalPrice } = useTotalPrice()
   const totalPriceNumber = parseFloat(totalPrice.toFixed(2))
 
@@ -35,7 +35,6 @@ export function BucketPage() {
        </div>
     )
 
-  //totalPrice adding incorectly with quantity 
   return (
     <div className="container mx-auto my-10">
       <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
